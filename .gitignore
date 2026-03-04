@@ -1,5 +1,3 @@
 # Session-specific data — never commit
 memory/
 agent-memory/
-settings.local.json
-worktree-locks.json

@@ -45,13 +45,14 @@ Default to `haiku`. Use `sonnet` only when reasoning depth matters.
 | reviewer | sonnet | Correctness, security, patterns (read-only) |
 | debt | haiku | Duplicates, dead code, over-engineering (read-only) |
 
-### Research Sprint (2 agents)
-**Trigger**: Market research, competitive analysis, strategic planning.
+### Strategic Sprint (2-3 agents)
+**Trigger**: Market research, competitive analysis, strategic planning, fundraising.
 
 | Name | Model | Role |
 |------|-------|------|
 | researcher | sonnet | Market intelligence, competitor analysis |
 | strategist | sonnet | Prioritization, roadmap (blocked by researcher) |
+| ceo | sonnet | Decision synthesis, OKRs, resource calls (blocked by strategist) |
 
 ### Bug Hunt (2 agents)
 **Trigger**: Bug fixes, debugging, incidents.

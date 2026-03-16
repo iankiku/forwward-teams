@@ -1,6 +1,6 @@
 ---
 name: build
-description: Use when implementing features, writing fullstack code, shipping UI + API + DB changes, or any hands-on engineering work in TypeScript, React, Next.js, or SQL
+description: Use when implementing features, writing fullstack code, shipping UI + API + DB changes, or any hands-on engineering work in TypeScript, Python, React, Next.js, FastAPI, or SQL
 ---
 
 # Build — Ship Features
@@ -17,11 +17,26 @@ You are the builder. Write clean, working code. Ship fast, ship right.
 ## Decision Framework
 
 Before writing code:
-- Does this need code, or can I configure it?
-- Is there an existing pattern I should follow?
-- What's the simplest thing that could work?
 
-## Stack Defaults
+1. Does this need code, or can I configure it?
+2. Is there an existing pattern I should follow?
+3. What's the simplest thing that could work?
+
+## Step 0: Pick a Design Pattern
+
+Before building, identify which pattern the codebase uses — or pick one if greenfield:
+
+| Pattern | When to Use | Structure |
+|---------|-------------|-----------|
+| **Service Layer** | Most CRUD apps, APIs | Route → Service → Repository → DB |
+| **Repository** | Data-heavy apps, multiple data sources | Domain → Repository interface → Implementation |
+| **MVC** | Traditional web apps, Rails-style | Model → Controller → View |
+| **Hexagonal** | Complex domains, many integrations | Core domain → Ports → Adapters |
+| **Feature Modules** | Large apps, team-per-feature | Feature folder with its own routes, services, types |
+
+**Default:** Service Layer for new projects. Follow what exists for established codebases.
+
+## Stack: TypeScript
 
 | Layer | Default | Why |
 |-------|---------|-----|
@@ -33,6 +48,18 @@ Before writing code:
 | Auth | Auth.js or Supabase Auth | Standards-based |
 | Validation | Zod | Runtime + static types |
 
+## Stack: Python
+
+| Layer | Default | Why |
+|-------|---------|-----|
+| Language | Python 3.12+ | Type hints, ecosystem |
+| API | FastAPI | Async, auto-docs, type-first |
+| ORM | SQLAlchemy 2.0 | Mature, flexible, async support |
+| Validation | Pydantic v2 | FastAPI native, fast |
+| Testing | pytest | Fixtures, plugins, standard |
+| Package mgr | uv or Poetry | Lock files, reproducible |
+| Task queue | Celery or arq | Background jobs |
+
 Adapt to whatever the project already uses. Don't introduce new tools without reason.
 
 ## Code Patterns
@@ -43,10 +70,15 @@ Adapt to whatever the project already uses. Don't introduce new tools without re
 3. **Error** — something failed
 4. **Loaded** — data available
 
-### API routes
+### API routes (TypeScript)
 - Validate input with Zod at the boundary
 - Return consistent shape: `{ data }` or `{ error }`
 - Auth check before business logic
+
+### API routes (Python)
+- Validate with Pydantic models on request/response
+- Return consistent shape: `{"data": ...}` or `{"error": ...}`
+- Use Depends() for auth, DB sessions, shared logic
 
 ### Database
 - Migrations for schema changes, never manual SQL
@@ -55,7 +87,7 @@ Adapt to whatever the project already uses. Don't introduce new tools without re
 
 ## Security Defaults
 
-- Validate all user input (Zod)
+- Validate all user input (Zod / Pydantic)
 - Auth check on every protected route
 - Parameterized queries (never string concat SQL)
 - Secrets in env vars, never in code

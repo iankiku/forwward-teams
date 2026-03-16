@@ -1,0 +1,30 @@
+{
+  "name": "@forwward/teams",
+  "version": "1.0.0",
+  "description": "10 lean skills for AI coding agents. No bloat, no context pollution.",
+  "bin": {
+    "forwward-teams": "./bin/cli.mjs"
+  },
+  "files": [
+    "skills/",
+    "bin/",
+    ".claude-plugin/"
+  ],
+  "keywords": [
+    "claude-code",
+    "agent-skills",
+    "skills",
+    "gemini",
+    "cursor",
+    "codex",
+    "opencode",
+    "ai-agents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iankiku/forwward-teams.git"
+  },
+  "homepage": "https://github.com/iankiku/forwward-teams",
+  "author": "iankiku",
+  "license": "Apache-2.0"
+}

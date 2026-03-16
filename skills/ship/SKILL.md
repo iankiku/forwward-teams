@@ -1,11 +1,34 @@
 ---
 name: ship
-description: Use when ready to release — syncing branches, running final checks, pushing code, opening PRs, or automating any part of the release workflow
+description: Use when ready to release — creating branches, syncing, running final checks, pushing code, opening PRs, or automating any part of the release workflow
 ---
 
 # Ship — Release Automation
 
-Get code from "done on my branch" to "merged and deployed" safely.
+Get code from "ready to build" to "merged and deployed" safely.
+
+## Step 0: Create Branch
+
+Before any work begins, create a branch from main:
+
+```bash
+git checkout main && git pull origin main
+git checkout -b <prefix>/<short-description>
+```
+
+### Branch Naming
+
+| Prefix | When |
+|--------|------|
+| `feat/` | New features — `feat/user-auth`, `feat/stripe-checkout` |
+| `fix/` | Bug fixes — `fix/login-redirect`, `fix/null-avatar` |
+| `bug/` | Bug investigation + fix — `bug/race-condition-cart` |
+| `chore/` | Maintenance — `chore/upgrade-deps`, `chore/ci-config` |
+| `docs/` | Documentation — `docs/api-reference`, `docs/setup-guide` |
+| `refactor/` | Code restructuring — `refactor/auth-middleware` |
+| `hotfix/` | Urgent production fix — `hotfix/payment-crash` |
+
+**Rules:** kebab-case, max 4 words, no ticket numbers in branch name.
 
 ## Pre-Ship Checklist
 
@@ -39,7 +62,7 @@ All checks must pass. No exceptions.
 ### 3. Push
 
 ```bash
-git push origin HEAD
+git push -u origin HEAD
 ```
 
 ### 4. Open PR

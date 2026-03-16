@@ -1,0 +1,19 @@
+{
+  "name": "forwward",
+  "owner": {
+    "name": "iankiku",
+    "email": "ian@forwward.com"
+  },
+  "metadata": {
+    "description": "Lean agent skills for technical founders — build, ship, grow"
+  },
+  "plugins": [
+    {
+      "name": "forwward-teams",
+      "source": "./",
+      "description": "10 lean agent skills — build, ship, strategy, growth. No context bloat.",
+      "version": "1.0.0",
+      "keywords": ["startup", "founder", "engineering", "growth", "strategy"]
+    }
+  ]
+}

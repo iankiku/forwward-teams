@@ -2,7 +2,7 @@
 
 Your startup's crack team — as agent skills. 11 skills that cover building, shipping, strategy, growth, and portability.
 
-Born from [forwward](https://forwward.com) — built for founders who code.
+Born from [forwward](https://forwward.app) — built for founders who code.
 
 ## Why 10 Skills, Not 100
 
@@ -102,8 +102,8 @@ npx skills add → copies SKILL.md files → your agent loads them on demand
 
 ## License
 
-Apache 2.0
+MIT
 
 ---
 
-Built by [@iankiku](https://github.com/iankiku) for [forwward](https://forwward.com)
+Built by [@iankiku](https://github.com/iankiku) for [forwward](https://forwward.app)

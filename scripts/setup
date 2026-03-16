@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# forwward-teams setup — installs skills into any project or globally
+#
+# Usage:
+#   ./setup              Install to current project (.claude/skills/forwward-teams/)
+#   ./setup --global     Install globally (~/.claude/skills/forwward-teams/)
+#   ./setup --uninstall  Remove from current project
+#   ./setup --help       Show this help
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# ─── Helpers ───
+
+info()  { echo "  → $1"; }
+done_() { echo "  ✓ $1"; }
+err()   { echo "  ✗ $1" >&2; }
+
+show_help() {
+  echo "forwward-teams setup"
+  echo ""
+  echo "Usage:"
+  echo "  ./setup              Install to current project"
+  echo "  ./setup --global     Install globally (all projects)"
+  echo "  ./setup --uninstall  Remove from current project"
+  echo ""
+  echo "Skills installed:"
+  echo "  /team-lead   Compose & coordinate agent teams"
+  echo "  /cto         Technical strategy & architecture"
+  echo "  /build       Ship features (fullstack engineering)"
+  echo "  /gate        Self-healing verification loop"
+  echo "  /strategy    Customer discovery & competitive intel"
+  echo "  /write       Founder-voice content (blogs, threads)"
+  echo "  /gtm         Growth & go-to-market"
+  echo "  /review      Paranoid code review"
+  echo "  /ship        Release automation"
+}
+
+# ─── Install ───
+
+install_plugin() {
+  local target="$1"
+  local skills_dir="$target/skills/forwward-teams"
+  local scripts_dir="$target/scripts"
+
+  info "Installing forwward-teams to $target"
+
+  # Create target directories
+  mkdir -p "$skills_dir"
+  mkdir -p "$scripts_dir"
+
+  # Copy skills
+  for skill_dir in "$PLUGIN_ROOT/skills"/*/; do
+    local skill_name
+    skill_name="$(basename "$skill_dir")"
+    mkdir -p "$skills_dir/$skill_name"
+    cp "$skill_dir/SKILL.md" "$skills_dir/$skill_name/SKILL.md"
+    done_ "Skill: $skill_name"
+  done
+
+  # Copy CLI (if not already present or outdated)
+  if [ -f "$PLUGIN_ROOT/scripts/cli" ]; then
+    cp "$PLUGIN_ROOT/scripts/cli" "$scripts_dir/cli"
+    chmod +x "$scripts_dir/cli"
+    done_ "CLI: scripts/cli"
+  fi
+
+  # Copy hooks (if target has hooks dir or create it)
+  if [ -d "$PLUGIN_ROOT/hooks" ]; then
+    mkdir -p "$target/hooks"
+    for hook in "$PLUGIN_ROOT/hooks"/*; do
+      cp "$hook" "$target/hooks/"
+      chmod +x "$target/hooks/$(basename "$hook")"
+    done
+    done_ "Hooks copied"
+  fi
+
+  echo ""
+  echo "  forwward-teams installed successfully!"
+  echo ""
+  echo "  Next steps:"
+  echo "    1. Run: .claude/scripts/cli init     (detect project build system)"
+  echo "    2. Use: /team-lead [task]             (compose a team)"
+  echo "    3. Or:  /build, /gate, /review, /ship (individual skills)"
+  echo ""
+}
+
+# ─── Uninstall ───
+
+uninstall_plugin() {
+  local target="$1"
+  local skills_dir="$target/skills/forwward-teams"
+
+  if [ ! -d "$skills_dir" ]; then
+    err "forwward-teams not found at $target"
+    return 1
+  fi
+
+  info "Removing forwward-teams from $target"
+  rm -rf "$skills_dir"
+  done_ "Skills removed"
+
+  echo ""
+  echo "  forwward-teams uninstalled."
+  echo "  CLI and hooks left in place (may be shared with other plugins)."
+  echo ""
+}
+
+# ─── Main ───
+
+case "${1:-}" in
+  --global|-g)
+    install_plugin "$HOME/.claude"
+    ;;
+  --uninstall|-u)
+    REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+    uninstall_plugin "$REPO_ROOT/.claude"
+    ;;
+  --help|-h)
+    show_help
+    ;;
+  *)
+    REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+    install_plugin "$REPO_ROOT/.claude"
+    ;;
+esac

@@ -1,0 +1,11 @@
+{
+  "name": "forwward-teams",
+  "description": "10 lean agent skills for building, shipping, strategy, and growth. 3,800 words total — no context bloat.",
+  "version": "1.0.0",
+  "author": {
+    "name": "iankiku"
+  },
+  "homepage": "https://github.com/iankiku/forwward-teams",
+  "repository": "https://github.com/iankiku/forwward-teams",
+  "license": "Apache-2.0"
+}

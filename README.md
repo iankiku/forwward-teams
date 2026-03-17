@@ -1,20 +1,10 @@
-```
-  ┌────────────────────────────────────────────────────────┐
-  │                                                        │
-  │   __                                    _              │
-  │  / _|___ _ ___ __ ____ __ ____ _ _ _ __| |             │
-  │ |  _/ _ \ '_\ V  V /\ V  V / _` | '_/ _` |            │
-  │ |_| \___/_|  \_/\_/  \_/\_/\__,_|_| \__,_|             │
-  │                                                        │
-  │  t e a m s                       by forwward.app       │
-  │                                                        │
-  │  Your startup's crack team — as agent skills.          │
-  │  21 skills. ~8,500 words. Zero bloat.                  │
-  │                                                        │
-  └────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="assets/banner.svg" alt="forwward teams" width="720" />
+</p>
 
-Born from [forwward](https://forwward.app) — built for founders who code.
+<p align="center">
+  Born from building <a href="https://forwward.app">forwward.app</a> in 7 days — built for founders who build.
+</p>
 
 ## Why 21 Skills, Not 100
 
@@ -132,4 +122,4 @@ MIT
 
 ---
 
-Built by [@iankiku](https://github.com/iankiku) for [forwward](https://forwward.app)
+Built by [@iankiku](https://github.com/iankiku) — born from building [forwward.app](https://forwward.app) in 7 days

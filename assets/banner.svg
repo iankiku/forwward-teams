@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" fill="none">
+  <rect width="720" height="200" rx="12" fill="#0a0a0a"/>
+  <rect x="1" y="1" width="718" height="198" rx="11" stroke="#262626" stroke-width="1" fill="none"/>
+
+  <!-- forwward in thick block text -->
+  <text x="40" y="90" font-family="monospace, 'Courier New'" font-size="64" font-weight="900" letter-spacing="-2">
+    <tspan fill="#ffffff">forw</tspan><tspan fill="#3b82f6">ward</tspan>
+  </text>
+
+  <!-- teams subtitle -->
+  <text x="42" y="120" font-family="monospace, 'Courier New'" font-size="22" font-weight="400" fill="#737373" letter-spacing="8">
+    teams
+  </text>
+
+  <!-- tagline -->
+  <text x="42" y="158" font-family="monospace, 'Courier New'" font-size="14" fill="#525252">
+    Your startup's crack team — as agent skills.
+  </text>
+  <text x="42" y="178" font-family="monospace, 'Courier New'" font-size="14" fill="#525252">
+    21 skills · ~8,500 words · zero bloat
+  </text>
+
+  <!-- by forwward.app -->
+  <text x="540" y="120" font-family="monospace, 'Courier New'" font-size="13" fill="#525252">
+    by forwward.app
+  </text>
+</svg>

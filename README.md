@@ -1,19 +1,20 @@
 # forwward-teams
 
-Your startup's crack team — as agent skills. 20 skills that cover building, shipping, architecture, design, strategy, growth, security, finance, sales, legal, clinical intelligence, and portability.
+Your startup's crack team — as agent skills. 21 skills that cover onboarding, building, shipping, architecture, design, strategy, growth, security, finance, sales, legal, clinical intelligence, and portability.
 
 Born from [forwward](https://forwward.app) — built for founders who code.
 
-## Why 20 Skills, Not 100
+## Why 21 Skills, Not 100
 
 Most agents drown in skills. Every skill you add inflates context, burns tokens, and degrades output quality. We've seen agents with 50+ skills produce worse results than one with 5 — because the model spends half its context window just reading instructions it won't use.
 
-**forwward-teams is 20 skills in ~8,000 words.** Everything a technical founder needs, nothing they don't.
+**forwward-teams is 21 skills in ~8,500 words.** Everything a technical founder needs, nothing they don't.
 
 ## What You Get
 
 | Skill | Your Team Member | Does What |
 |-------|-----------------|-----------|
+| `/start` | Onboarding | Learns your company, initializes env, recommends first skills |
 | `/team-lead` | Lead | Composes agent teams, coordinates parallel work |
 | `/ceo` | CEO | Vision, OKRs, hiring, fundraising, pivot-or-persist |
 | `/cto` | CTO | Architecture decisions, build-vs-buy, PRDs, tech debt |
@@ -71,6 +72,10 @@ npx skills update
 ## Quick Start
 
 ```bash
+# First time? Start here — learns your company, sets up environment
+/start
+
+# Then use your team
 /team-lead Build user authentication with OAuth
 /ceo       Should we raise a seed round or bootstrap?
 /cto       Should we build or buy payments?
@@ -96,7 +101,7 @@ npx skills add → copies SKILL.md files → your agent loads them on demand
 
 ## Philosophy
 
-- **Lean** — 20 skills, ~8,000 words total. Each one earns its place.
+- **Lean** — 21 skills, ~8,500 words total. Each one earns its place.
 - **Anti-bloat** — More skills = more context pollution = worse output. We chose quality over quantity.
 - **Scaffold** — Basics that teams extend, not a rigid framework.
 - **Plugin-friendly** — Install, uninstall, update cleanly.

@@ -1,6 +1,6 @@
 # forwward-teams
 
-Your startup's crack team — as agent skills. 11 skills that cover building, shipping, strategy, growth, and portability.
+Your startup's crack team — as agent skills. 12 skills that cover building, shipping, strategy, growth, clinical intelligence, and portability.
 
 Born from [forwward](https://forwward.app) — built for founders who code.
 
@@ -8,7 +8,7 @@ Born from [forwward](https://forwward.app) — built for founders who code.
 
 Most agents drown in skills. Every skill you add inflates context, burns tokens, and degrades output quality. We've seen agents with 50+ skills produce worse results than one with 5 — because the model spends half its context window just reading instructions it won't use.
 
-**forwward-teams is 11 skills in ~4,000 words.** Everything a technical founder needs, nothing they don't.
+**forwward-teams is 12 skills in ~4,500 words.** Everything a technical founder needs, nothing they don't.
 
 ## What You Get
 
@@ -24,6 +24,7 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/gtm` | Growth | Viral loops, launch playbooks, K-factor optimization |
 | `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries |
 | `/ship` | Release Eng | Branch, verify, push, PR — release automation |
+| `/medic` | Clinician | OCR medical records, clinical summaries, data presentation |
 | `/switch` | Migration | Export all AI context, move to any platform |
 
 ## Install
@@ -87,7 +88,7 @@ npx skills add → copies SKILL.md files → your agent loads them on demand
 
 ## Philosophy
 
-- **Lean** — 11 skills, ~4,000 words total. Each one earns its place.
+- **Lean** — 12 skills, ~4,500 words total. Each one earns its place.
 - **Anti-bloat** — More skills = more context pollution = worse output. We chose quality over quantity.
 - **Scaffold** — Basics that teams extend, not a rigid framework.
 - **Plugin-friendly** — Install, uninstall, update cleanly.

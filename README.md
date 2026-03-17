@@ -1,14 +1,14 @@
 # forwward-teams
 
-Your startup's crack team — as agent skills. 12 skills that cover building, shipping, strategy, growth, clinical intelligence, and portability.
+Your startup's crack team — as agent skills. 18 skills that cover building, shipping, strategy, growth, design, security, finance, sales, clinical intelligence, and portability.
 
 Born from [forwward](https://forwward.app) — built for founders who code.
 
-## Why 10 Skills, Not 100
+## Why 18 Skills, Not 100
 
 Most agents drown in skills. Every skill you add inflates context, burns tokens, and degrades output quality. We've seen agents with 50+ skills produce worse results than one with 5 — because the model spends half its context window just reading instructions it won't use.
 
-**forwward-teams is 12 skills in ~4,500 words.** Everything a technical founder needs, nothing they don't.
+**forwward-teams is 18 skills in ~7,000 words.** Everything a technical founder needs, nothing they don't.
 
 ## What You Get
 
@@ -24,6 +24,12 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/gtm` | Growth | Viral loops, launch playbooks, K-factor optimization |
 | `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries |
 | `/ship` | Release Eng | Branch, verify, push, PR — release automation |
+| `/design` | Designer | Anti-slop UI/UX — real design principles, no AI aesthetics |
+| `/devops` | SRE | CI/CD, Docker, monitoring, alerting, incident response |
+| `/data` | Analyst | SQL, metrics, dashboards, event tracking, cohort analysis |
+| `/security` | InfoSec | OWASP, HIPAA, SOC 2, auth, encryption, compliance |
+| `/finance` | CFO | Unit economics, burn rate, runway, financial models |
+| `/sales` | AE | Outreach, demos, objection handling, pipeline management |
 | `/medic` | Clinician | OCR medical records, clinical summaries, data presentation |
 | `/switch` | Migration | Export all AI context, move to any platform |
 
@@ -88,7 +94,7 @@ npx skills add → copies SKILL.md files → your agent loads them on demand
 
 ## Philosophy
 
-- **Lean** — 12 skills, ~4,500 words total. Each one earns its place.
+- **Lean** — 18 skills, ~7,000 words total. Each one earns its place.
 - **Anti-bloat** — More skills = more context pollution = worse output. We chose quality over quantity.
 - **Scaffold** — Basics that teams extend, not a rigid framework.
 - **Plugin-friendly** — Install, uninstall, update cleanly.

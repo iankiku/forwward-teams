@@ -17,6 +17,7 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | Skill | Your Team Member | Does What |
 |-------|-----------------|-----------|
 | `/start` | Onboarding | Learns your company, initializes env, recommends first skills |
+| `/onboard` | Setup Assistant | Configures new agents — 10 questions, tests tools, sets guardrails |
 | `/team-lead` | Lead | Composes agent teams, coordinates parallel work |
 | `/ceo` | CEO | Vision, OKRs, hiring, fundraising, pivot-or-persist |
 | `/cto` | CTO | Architecture decisions, build-vs-buy, PRDs, tech debt |
@@ -75,8 +76,9 @@ npx skills update
 ## Quick Start
 
 ```bash
-# First time? Start here — learns your company, sets up environment
-/start
+# First time? Two options:
+/start     # Learn your company, initialize environment
+/onboard   # Configure a new agent from scratch (10 questions, tool testing)
 
 # Then use your team
 /team-lead Build user authentication with OAuth

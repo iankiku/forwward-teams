@@ -4,11 +4,11 @@ import { execSync } from "node:child_process";
 import { createInterface } from "node:readline";
 
 const REPO = "iankiku/forwward-teams";
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 const BANNER = `
   forwward-teams v${VERSION}
-  10 skills · 3,800 words · zero bloat
+  22 skills · ~8,500 words · zero bloat
 
   Most agents drown in skills. Every skill you add
   inflates context, burns tokens, and degrades output.

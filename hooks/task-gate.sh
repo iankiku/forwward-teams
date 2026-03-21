@@ -1,18 +1,31 @@
 #!/bin/bash
-# PostToolUse hook for Edit/Write — runs lint check on changed files
+# PostToolUse hook for Write/Edit — runs fast lint on changed files
 INPUT=$(cat)
 FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
 if [ -z "$FILE" ]; then exit 0; fi
-# Only check TS/TSX files
-case "$FILE" in *.ts|*.tsx)
-  DIR=$(dirname "$FILE")
-  # Walk up to find nearest node_modules (project root)
-  while [ "$DIR" != "/" ]; do
-    if [ -d "$DIR/node_modules" ]; then
-      cd "$DIR" && npx eslint --no-warn-ignored "$FILE" 2>/dev/null || true
-      break
-    fi
-    DIR=$(dirname "$DIR")
+
+# Walk up from file to find project root (has node_modules or package.json)
+find_root() {
+  local dir="$1"
+  while [ "$dir" != "/" ]; do
+    if [ -f "$dir/package.json" ]; then echo "$dir"; return; fi
+    dir=$(dirname "$dir")
   done
-  ;; esac
+}
+
+ROOT=$(find_root "$(dirname "$FILE")")
+if [ -z "$ROOT" ]; then exit 0; fi
+
+case "$FILE" in
+  *.ts|*.tsx)
+    cd "$ROOT" && npx eslint --no-warn-ignored "$FILE" 2>/dev/null || true
+    ;;
+  *.js|*.jsx|*.mjs|*.cjs)
+    cd "$ROOT" && npx eslint --no-warn-ignored "$FILE" 2>/dev/null || true
+    ;;
+  *.py)
+    command -v ruff >/dev/null 2>&1 && ruff check "$FILE" 2>/dev/null || true
+    ;;
+esac
+
 exit 0

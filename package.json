@@ -1,7 +1,7 @@
 {
   "name": "@forwward/teams",
   "version": "0.1.0",
-  "description": "22 lean skills for AI coding agents. No bloat, no context pollution.",
+  "description": "Lean skills for AI coding agents. No bloat, no context pollution.",
   "bin": {
     "forwward-teams": "./bin/cli.mjs"
   },

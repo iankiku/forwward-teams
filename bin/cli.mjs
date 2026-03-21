@@ -8,7 +8,7 @@ const VERSION = "0.1.0";
 
 const BANNER = `
   forwward-teams v${VERSION}
-  22 skills · ~8,500 words · zero bloat
+  lean skills · zero bloat
 
   Most agents drown in skills. Every skill you add
   inflates context, burns tokens, and degrades output.

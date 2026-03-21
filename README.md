@@ -6,11 +6,11 @@
   Born from building <a href="https://forwward.app">forwward.app</a> in 7 days — built for founders who build.
 </p>
 
-## Why 22 Skills, Not 100
+## Why Lean Skills, Not 100
 
 Most agents drown in skills. Every skill you add inflates context, burns tokens, and degrades output quality. We've seen agents with 50+ skills produce worse results than one with 5 — because the model spends half its context window just reading instructions it won't use.
 
-**forwward-teams is 22 skills in ~8,500 words.** Everything a technical founder needs, nothing they don't.
+**forwward-teams is a lean skills set for technical founders.** Everything you need, nothing you don't.
 
 ## What You Get
 
@@ -104,7 +104,7 @@ npx skills add → copies SKILL.md files → your agent loads them on demand
 
 ## Philosophy
 
-- **Lean** — 22 skills, ~8,500 words total. Each one earns its place.
+- **Lean** — Every skill earns its place. No bloat, no context pollution.
 - **Anti-bloat** — More skills = more context pollution = worse output. We chose quality over quantity.
 - **Scaffold** — Basics that teams extend, not a rigid framework.
 - **Plugin-friendly** — Install, uninstall, update cleanly.

@@ -25,7 +25,7 @@ After discovery, set up the workspace:
 
 ```bash
 # Detect build system and cache config
-.claude/scripts/cli init
+${CLAUDE_PLUGIN_ROOT}/scripts/cli init
 ```
 
 If `cli init` isn't available (non-Claude Code environment), skip — skills work without it.

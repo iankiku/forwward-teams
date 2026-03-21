@@ -4,3 +4,6 @@ agent-memory/
 
 # Repo management scripts — local only
 scripts/release
+
+# Marketplace listing — local reference only
+marketplace-listing.md

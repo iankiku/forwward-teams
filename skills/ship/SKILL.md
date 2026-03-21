@@ -54,7 +54,7 @@ If conflicts: resolve, run `/gate` again.
 ### 2. Final verification
 
 ```bash
-.claude/scripts/cli gate
+${CLAUDE_PLUGIN_ROOT}/scripts/cli gate
 ```
 
 All checks must pass. No exceptions.

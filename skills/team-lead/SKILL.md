@@ -12,7 +12,7 @@ Analyze a task, pick the right team shape, spawn agents, coordinate work.
 Before spawning agents, ensure `.claude/project.json` exists:
 
 ```bash
-.claude/scripts/cli init
+${CLAUDE_PLUGIN_ROOT}/scripts/cli init
 ```
 
 Agents read this file for all build commands — no re-detection needed.

@@ -1,3 +1,6 @@
 # Session-specific data — never commit
 memory/
 agent-memory/
+
+# Repo management scripts — local only
+scripts/release

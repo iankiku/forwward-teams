@@ -123,4 +123,8 @@ MIT
 
 ---
 
+**Note:** This skill set is provided as-is for educational and personal use. The access and permissions you grant your agent are your responsibility to configure and enforce. The author is not liable for data loss, unintended access, or misconfiguration resulting from use of these skills.
+
+---
+
 Built by [@iankiku](https://github.com/iankiku) — born from building [forwward.app](https://forwward.app) in 7 days

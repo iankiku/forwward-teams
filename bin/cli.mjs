@@ -4,7 +4,7 @@ import { execSync } from "node:child_process";
 import { createInterface } from "node:readline";
 
 const REPO = "iankiku/forwward-teams";
-const VERSION = "1.1.0";
+const VERSION = "0.1.0";
 
 const BANNER = `
   forwward-teams v${VERSION}

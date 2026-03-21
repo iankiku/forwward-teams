@@ -12,8 +12,14 @@
       "name": "forwward-teams",
       "source": "./",
       "description": "22 lean agent skills — build, ship, strategy, growth. No context bloat.",
-      "version": "1.1.0",
-      "keywords": ["startup", "founder", "engineering", "growth", "strategy"]
+      "version": "0.1.0",
+      "keywords": [
+        "startup",
+        "founder",
+        "engineering",
+        "growth",
+        "strategy"
+      ]
     }
   ]
 }

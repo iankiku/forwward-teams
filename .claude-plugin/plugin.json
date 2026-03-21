@@ -1,7 +1,7 @@
 {
   "name": "forwward-teams",
   "description": "22 lean agent skills for building, shipping, strategy, and growth — no context bloat.",
-  "version": "1.1.0",
+  "version": "0.1.0",
   "author": {
     "name": "iankiku",
     "email": "ian@forwward.com"
@@ -9,7 +9,14 @@
   "homepage": "https://github.com/iankiku/forwward-teams",
   "repository": "https://github.com/iankiku/forwward-teams",
   "license": "MIT",
-  "keywords": ["startup", "founder", "engineering", "growth", "strategy", "skills"],
+  "keywords": [
+    "startup",
+    "founder",
+    "engineering",
+    "growth",
+    "strategy",
+    "skills"
+  ],
   "skills": "./skills",
   "hooks": "./hooks/hooks.json"
 }

@@ -15,19 +15,19 @@ Run checks, read errors, fix them, repeat. Prove code WORKS by executing it.
 
 ## Step 0: Get Commands
 
-Read `.claude/project.json` for build commands. If missing:
+Read `.claude/project.json` for build commands. If missing, init from the plugin CLI:
 
 ```bash
-.claude/scripts/cli init
+${CLAUDE_PLUGIN_ROOT}/scripts/cli init
 ```
 
-Or run checks directly via CLI:
+Or run checks directly via the plugin CLI:
 
 ```bash
-.claude/scripts/cli gate        # lint + typecheck + build + test
-.claude/scripts/cli gatekeep -g  # same, with PASS/FAIL report
-.claude/scripts/cli gatekeep -l  # lint only
-.claude/scripts/cli gatekeep -t  # test only
+${CLAUDE_PLUGIN_ROOT}/scripts/cli gate        # lint + typecheck + build + test
+${CLAUDE_PLUGIN_ROOT}/scripts/cli gatekeep -g  # same, with PASS/FAIL report
+${CLAUDE_PLUGIN_ROOT}/scripts/cli gatekeep -l  # lint only
+${CLAUDE_PLUGIN_ROOT}/scripts/cli gatekeep -t  # test only
 ```
 
 ## The Loop

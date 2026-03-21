@@ -8,7 +8,9 @@
   "files": [
     "skills/",
     "hooks/",
+    "scripts/",
     "bin/",
+    "marketplace.json",
     ".claude-plugin/"
   ],
   "keywords": [

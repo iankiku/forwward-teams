@@ -97,15 +97,16 @@ function copyHookScripts(projectRoot) {
   return copied.length > 0 ? destDir : null;
 }
 
-// ─── Setup hooks in project settings (portable paths) ───
+// ─── Setup project settings (merges — never replaces) ───
 
-function setupHooks(projectRoot) {
+function setupSettings(projectRoot) {
   const copied = copyHookScripts(projectRoot);
-  if (!copied) return false;
+  if (!copied) return { ok: false };
 
   const claudeDir = join(projectRoot, ".claude");
   const settingsPath = join(claudeDir, "settings.json");
 
+  // Read existing settings (if any) — preserve everything we don't touch
   let settings = {};
   if (existsSync(settingsPath)) {
     try {
@@ -114,6 +115,10 @@ function setupHooks(projectRoot) {
       settings = {};
     }
   }
+
+  const summary = { hooks: [], env: [], teammateMode: null };
+
+  // ─── Hooks (merge, skip if already present) ───
 
   if (!settings.hooks) settings.hooks = {};
 
@@ -129,6 +134,7 @@ function setupHooks(projectRoot) {
       matcher: "Write|Edit",
       hooks: [{ type: "command", command: taskGatePath, async: true }],
     });
+    summary.hooks.push("PostToolUse (task-gate)");
   }
 
   if (!settings.hooks.PreToolUse) settings.hooks.PreToolUse = [];
@@ -140,11 +146,32 @@ function setupHooks(projectRoot) {
       matcher: "Bash",
       hooks: [{ type: "command", command: validatePath }],
     });
+    summary.hooks.push("PreToolUse (validate-command)");
+  }
+
+  // ─── Teams env vars (merge into existing env — don't overwrite others) ───
+
+  if (!settings.env) settings.env = {};
+  const teamsEnv = {
+    CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: "1",
+  };
+  for (const [key, value] of Object.entries(teamsEnv)) {
+    if (settings.env[key] !== value) {
+      settings.env[key] = value;
+      summary.env.push(key);
+    }
+  }
+
+  // ─── Teammate mode (only set if user hasn't picked one) ───
+
+  if (!settings.teammateMode) {
+    settings.teammateMode = "tmux";
+    summary.teammateMode = "tmux";
   }
 
   mkdirSync(claudeDir, { recursive: true });
   writeFileSync(settingsPath, JSON.stringify(settings, null, 2) + "\n");
-  return true;
+  return { ok: true, summary };
 }
 
 // ─── Run project detection and return parsed config ───
@@ -173,17 +200,39 @@ function setupGate(projectRoot) {
   }
 }
 
-// ─── Configure project (hooks + gate) ───
+// ─── Configure project (settings + gate) ───
 
 function configureProject(projectRoot) {
   log(`Project: ${projectRoot}`);
   console.log("");
 
-  if (setupHooks(projectRoot)) {
-    ok("Hooks copied to .claude/hooks/forwward/");
-    ok("Hooks registered in .claude/settings.json");
-  } else {
+  const result = setupSettings(projectRoot);
+  if (!result.ok) {
     fail("Could not set up hooks");
+  } else {
+    const { summary } = result;
+
+    // Hooks
+    if (summary.hooks.length > 0) {
+      ok("Hooks copied to .claude/hooks/forwward/");
+      ok(`Hooks added: ${summary.hooks.join(", ")}`);
+    } else {
+      skip("Hooks already registered (no changes)");
+    }
+
+    // Env
+    if (summary.env.length > 0) {
+      ok(`Teams enabled: ${summary.env.join(", ")}`);
+    } else {
+      skip("Teams env vars already set (no changes)");
+    }
+
+    // Teammate mode
+    if (summary.teammateMode) {
+      ok(`teammateMode set to "${summary.teammateMode}"`);
+    } else {
+      skip("teammateMode already configured (preserved)");
+    }
   }
 
   const config = setupGate(projectRoot);

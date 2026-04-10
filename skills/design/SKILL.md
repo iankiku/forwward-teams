@@ -1,6 +1,6 @@
 ---
 name: design
-description: Use when making UI/UX decisions, building components, choosing colors, layouts, typography, or reviewing any visual design — enforces anti-slop standards against generic AI aesthetics
+description: (forwward) Enforces anti-slop UI/UX standards with deliberate choices for color, typography, layout, and components — fights generic AI aesthetics. Triggers on UI/UX decisions, component design, color choices, layouts, typography, or visual design review.
 ---
 
 # Design — Anti-Slop UI/UX

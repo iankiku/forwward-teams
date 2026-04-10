@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Use when designing system architecture, choosing databases, structuring projects, selecting tech stacks, designing APIs, planning caching strategies, or organizing a codebase for scale
+description: (forwward) Designs system architecture, selects databases, structures projects, plans APIs, and defines caching strategies with scale-appropriate defaults. Triggers on system design, database selection, project structure, tech stack, API design, caching, or codebase organization.
 ---
 
 # Architect — System Design

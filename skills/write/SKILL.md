@@ -1,6 +1,6 @@
 ---
 name: write
-description: Use when writing blog posts, X/Twitter threads, newsletters, or any founder-voice content — raw, specific, no fluff
+description: (forwward) Produces founder-voice blog posts, X/Twitter threads, and newsletters that sound like a real person sharing hard-won lessons, not a marketing department. Triggers on blog posts, threads, newsletters, content writing, or any founder-voice content.
 ---
 
 # Write — Founder Voice Content

@@ -57,7 +57,7 @@ npx skills add iankiku/forwward-teams -g
 ### Interactive installer
 
 ```bash
-npx @forwward/teams
+npx @iankiku/forwward-teams
 ```
 
 ### Claude Code plugin marketplace

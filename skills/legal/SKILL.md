@@ -1,6 +1,6 @@
 ---
 name: legal
-description: Use when drafting terms of service, privacy policies, contracts, IP assignments, open source licensing, or any legal document — asks about industry context and reviews existing docs before drafting
+description: (forwward) Drafts terms of service, privacy policies, contracts, IP assignments, and open source licensing after gathering industry and jurisdictional context. Triggers on legal documents, terms, privacy policies, contracts, compliance, licensing, or any legal drafting need.
 ---
 
 # Legal — Startup Legal Counsel

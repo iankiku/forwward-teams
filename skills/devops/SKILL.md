@@ -1,6 +1,6 @@
 ---
 name: devops
-description: Use when setting up CI/CD, Docker, deployment pipelines, monitoring, alerting, infrastructure, or debugging production issues
+description: (forwward) Configures CI/CD pipelines, Docker, monitoring, alerting, and infrastructure with reliability-first defaults. Triggers on CI/CD, Docker, deployment, monitoring, alerting, infrastructure setup, or production debugging.
 ---
 
 # DevOps — Infrastructure & Deployment

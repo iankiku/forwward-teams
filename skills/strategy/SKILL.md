@@ -1,6 +1,6 @@
 ---
 name: strategy
-description: Use when defining target customers, building ICPs, researching competitors, crafting positioning, developing pricing, or running strategic discovery conversations
+description: (forwward) Runs customer discovery, builds ICPs, researches competitors, crafts positioning, and develops pricing with structured frameworks. Triggers on target customers, ICPs, competitor research, positioning, pricing, or strategic discovery conversations.
 ---
 
 # Strategy — Customer Discovery & Competitive Intelligence

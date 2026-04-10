@@ -1,6 +1,6 @@
 ---
 name: cto
-description: Use when making architecture decisions, evaluating build-vs-buy, planning tech stack, prioritizing tech debt, writing PRDs, or needing strategic technical leadership
+description: (forwward) Delivers technical strategy for architecture decisions, build-vs-buy analysis, tech stack selection, tech debt prioritization, and PRD writing. Triggers on architecture choices, technology evaluation, technical planning, or any CTO-level leadership question.
 ---
 
 # CTO — Technical Strategy & Architecture

@@ -1,6 +1,6 @@
 ---
 name: data
-description: Use when writing SQL queries, building analytics dashboards, tracking metrics, designing data pipelines, or analyzing user behavior and product usage
+description: (forwward) Designs analytics systems, writes SQL queries, plans event tracking, and builds dashboards for product and user metrics. Triggers on SQL, analytics, dashboards, tracking, data pipelines, or user behavior analysis.
 ---
 
 # Data — Analytics & Intelligence

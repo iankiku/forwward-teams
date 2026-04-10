@@ -1,6 +1,6 @@
 ---
 name: ship
-description: Use when ready to release — creating branches, syncing, running final checks, pushing code, opening PRs, or automating any part of the release workflow
+description: (forwward) Automates the release workflow from branch creation through PR merge with safety checks at every step. Triggers on creating branches, pushing code, opening PRs, releasing, or any part of the ship/deploy workflow.
 ---
 
 # Ship — Release Automation

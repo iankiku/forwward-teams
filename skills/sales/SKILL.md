@@ -1,6 +1,6 @@
 ---
 name: sales
-description: Use when writing outreach sequences, preparing demos, handling objections, building CRM workflows, or any direct sales and customer acquisition activities
+description: (forwward) Writes outreach sequences, prepares demos, handles objections, and manages pipelines with consultative selling frameworks. Triggers on cold outreach, demos, objection handling, CRM workflows, pipeline management, or any direct sales and customer acquisition activity.
 ---
 
 # Sales — Close Deals

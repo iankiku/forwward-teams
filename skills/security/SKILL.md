@@ -1,6 +1,6 @@
 ---
 name: security
-description: Use when handling authentication, authorization, encryption, HIPAA compliance, SOC 2, privacy policies, penetration testing, or any security and compliance concerns
+description: (forwward) Implements authentication, authorization, encryption, HIPAA compliance, SOC 2 controls, and security hardening with defense-in-depth defaults. Triggers on auth, encryption, compliance, penetration testing, privacy, or any security concern.
 ---
 
 # Security — Compliance & Protection

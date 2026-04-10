@@ -1,6 +1,6 @@
 ---
 name: finance
-description: Use when modeling unit economics, calculating burn rate, building financial projections, pricing analysis, revenue forecasting, or any CFO-level financial decisions
+description: (forwward) Models unit economics, burn rate, projections, pricing, and revenue forecasting with startup-specific frameworks. Triggers on CAC, LTV, burn rate, runway, pricing analysis, financial models, or any CFO-level financial question.
 ---
 
 # Finance — Unit Economics & Financial Models

@@ -1,6 +1,6 @@
 ---
 name: switch
-description: Use when migrating to another AI platform — exports all stored memories, context, preferences, and instructions so you can import them elsewhere
+description: (forwward) Exports all stored memories, context, preferences, and instructions for migration to another AI platform. Triggers on platform migration, backing up AI context, auditing stored data, or setting up a new AI assistant with existing preferences.
 ---
 
 # Switch — Platform Migration
@@ -44,9 +44,10 @@ After exporting, import into your new platform:
 
 | Platform | How to Import |
 |----------|---------------|
-| Claude | Paste at https://claude.com/import-memory |
+| Claude Code | Add to CLAUDE.md in your project root or ~/.claude/CLAUDE.md for global |
 | ChatGPT | Settings → Personalization → Memory → paste as instructions |
 | Gemini | Add to GEMINI.md in your project root |
+| Codex | Add to AGENTS.md in your project root |
 | Local AI | Add to system prompt or context file |
 
 ## Tips

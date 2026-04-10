@@ -1,6 +1,6 @@
 ---
 name: team-lead
-description: Use when orchestrating multi-agent teams for parallel work — feature dev, quality audits, research sprints, bug hunts, or any task needing 2+ agents working concurrently
+description: (forwward) Orchestrates multi-agent teams by analyzing tasks, selecting team shapes, and coordinating parallel agent work with model-tier assignment. Triggers on tasks needing 2+ agents, feature dev with frontend + backend, quality audits, research sprints, or bug hunts.
 ---
 
 # Team Lead — Compose & Coordinate Agent Teams

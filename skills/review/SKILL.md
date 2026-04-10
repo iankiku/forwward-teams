@@ -1,6 +1,6 @@
 ---
 name: review
-description: Use when reviewing code for bugs, security issues, race conditions, N+1 queries, trust boundary violations, or any pre-merge quality check
+description: (forwward) Performs paranoid code review checking trust boundaries, data integrity, performance, race conditions, error handling, and OWASP security. Triggers on code review, pre-merge checks, security audit, bug hunting, or any request to review, audit, or check code quality.
 ---
 
 # Review — Paranoid Code Review

@@ -1,9 +1,45 @@
+# Build output — never commit
+dist/
+*.tgz
+
+# Dependencies
+node_modules/
+
+# Local Claude Code state — never commit
+.claude/
+.claude.*
+.claudeignore
+# Keep .claude-plugin/ — contains plugin.json for Claude Code plugin discovery
+!.claude-plugin/
+!.claude-plugin/**
+
 # Session-specific data — never commit
 memory/
 agent-memory/
+*sessions.txt
+*-sessions.md
+
+# Images / assets not used by the package
+forwward.png
+*Gemini_Generated*
+*.jpg
+*.jpeg
 
 # Repo management scripts — local only
 scripts/release
 
 # Marketplace listing — local reference only
 marketplace-listing.md
+
+# macOS
+.DS_Store
+._*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*

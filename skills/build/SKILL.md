@@ -1,6 +1,6 @@
 ---
 name: build
-description: Use when implementing features, writing fullstack code, shipping UI + API + DB changes, or any hands-on engineering work in TypeScript, Python, React, Next.js, FastAPI, or SQL
+description: (forwward) Guides fullstack feature development with clean code patterns for TypeScript, Python, React, Next.js, FastAPI, and SQL. Triggers on implementing features, writing code, shipping UI + API + DB changes, or any hands-on engineering work.
 ---
 
 # Build — Ship Features

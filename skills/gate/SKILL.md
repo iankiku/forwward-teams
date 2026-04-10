@@ -1,6 +1,6 @@
 ---
 name: gate
-description: Use when verifying code works — after feature work, before committing, before deploy, or any request to "verify", "check", or "make sure it works"
+description: (forwward) Runs lint, typecheck, build, and test in a self-healing loop that reads errors, fixes them, and retries up to 4 times. Triggers on verify, check, make sure it works, pre-commit validation, pre-deploy checks, or any quality gate.
 ---
 
 # Gate — Self-Healing Verification

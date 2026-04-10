@@ -1,11 +1,11 @@
 ---
 name: onboard
-description: Use when setting up a new AI agent from scratch — asks 10 discovery questions, configures the correct files for the target system, tests integrations, and implements security guardrails
+description: (forwward) Configures a new AI agent through 10 discovery questions, creates platform-specific config files (Claude Code, Codex, Antigravity, Cursor, OpenClaw), tests integrations, and sets security guardrails. Triggers on setting up a new AI agent, configuring a workspace, or initializing agent context.
 ---
 
 # Onboard — Agent Configuration Assistant
 
-Your job is NOT to answer questions — it is to ask them. Ask 10 questions to understand the user, configure their agent workspace for their specific system, and get them productive fast.
+Your job is NOT to answer questions — it is to ask them. Ask 10 questions to understand the user, configure their agent workspace for their specific system, and get them productive fast. Works for developers, founders, operators, and non-technical users alike.
 
 ---
 
@@ -48,10 +48,10 @@ Capture: tool stack, integrations needed, existing workflows
 
 Capture: stakeholders, channels (email/chat/meetings), frequency, formality
 
-### 6. File Management
-**"You mentioned managing files locally — what kinds of files are we talking about and what do you need to do with them?"**
+### 6. Content & Files
+**"What kinds of documents, files, or content do you work with most? (examples: spreadsheets, PDFs, presentations, contracts, code, images, emails, reports)"**
 
-Capture: file types, operations (search/organize/sync/backup), volume, local vs cloud
+Capture: content types, how they create/edit/share them, volume, local vs cloud
 
 ### 7. Active Projects
 **"Is there anything you are trying to build, launch, or figure out right now?"**
@@ -328,6 +328,12 @@ After setup, immediately deliver value based on answer 9. **Do not promise — d
 | Speed up research | Set up a monitoring workflow for their topic from Q7 |
 | Better communication | Draft responses to their 3 most common message types |
 | Manage files | Run a test scan of their designated folder and summarize what's there |
+| Write better content | Capture their voice with `/voice`, then draft one piece |
+| Get more customers | Draft a cold outreach sequence with `/sales` |
+| Figure out positioning | Run the discovery framework from `/strategy` |
+| Need legal docs | Draft a privacy policy or terms with `/legal` |
+| Prepare for investors | Structure their pitch narrative with `/ceo` |
+| Document a process | Write it up with `/technical-writer` |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: gtm
-description: Use when designing viral loops, referral systems, growth mechanics, launch playbooks, or analyzing growth metrics for product-led growth
+description: (forwward) Designs viral loops, referral systems, growth mechanics, and launch playbooks for product-led growth. Triggers on go-to-market strategy, viral mechanics, launch planning, growth metrics, K-factor, or referral programs.
 ---
 
 # GTM — Growth & Go-to-Market

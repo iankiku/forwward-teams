@@ -1,6 +1,6 @@
 ---
 name: medic
-description: Use when analyzing patient records, clinical notes, medical PDFs, FHIR data, or advising on how to present medical data in health-tech products — OCR interpretation, clinical summarization, differential diagnosis support, drug interaction flags
+description: (forwward) Interprets medical records, clinical notes, FHIR data, and advises on medical data UI with OCR interpretation, clinical summarization, and drug interaction flags. Triggers on patient records, clinical data, medical PDFs, health-tech products, or medical data presentation.
 ---
 
 # Medic — Clinical Intelligence

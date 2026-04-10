@@ -1,6 +1,6 @@
 ---
 name: ceo
-description: Use when making high-level business decisions — vision, OKRs, hiring, fundraising, resource allocation, pivots, or any strategic leadership question
+description: (forwward) Provides CEO-level strategic leadership frameworks for vision, OKRs, hiring, fundraising, resource allocation, and pivot decisions. Triggers on company strategy, growth direction, team scaling, investor relations, or any high-level business decision.
 ---
 
 # CEO — Strategic Leadership

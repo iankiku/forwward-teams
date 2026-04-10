@@ -1,18 +1,33 @@
 {
-  "name": "@forwward/teams",
-  "version": "0.2.0",
+  "name": "@iankiku/forwward-teams",
+  "version": "0.3.0",
   "description": "Lean skills for AI coding agents. No bloat, no context pollution.",
+  "type": "module",
   "bin": {
+    "fwd": "./bin/cli.mjs",
+    "forwward": "./bin/cli.mjs",
     "forwward-teams": "./bin/cli.mjs"
   },
   "files": [
     "skills/",
     "hooks/",
-    "scripts/",
+    "scripts/cli",
     "bin/",
     "marketplace.json",
-    ".claude-plugin/"
+    ".claude-plugin/",
+    "README.md",
+    "LICENSE"
   ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "pack": "npm pack --pack-destination dist",
+    "clean": "rm -rf dist",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish"
+  },
   "keywords": [
     "claude-code",
     "agent-skills",
@@ -21,13 +36,24 @@
     "cursor",
     "codex",
     "opencode",
-    "ai-agents"
+    "ai-agents",
+    "founder",
+    "startup"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/iankiku/forwward-teams.git"
+    "url": "git+https://github.com/iankiku/forwward-teams.git"
   },
-  "homepage": "https://github.com/iankiku/forwward-teams",
+  "homepage": "https://github.com/iankiku/forwward-teams#readme",
+  "bugs": {
+    "url": "https://github.com/iankiku/forwward-teams/issues"
+  },
   "author": "iankiku",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^8.4.1"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.30.0"
+  }
 }

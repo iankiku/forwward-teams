@@ -4,9 +4,9 @@
   "description": "Lean skills for AI coding agents. No bloat, no context pollution.",
   "type": "module",
   "bin": {
-    "fwd": "./bin/cli.js",
-    "forwward": "./bin/cli.js",
-    "forwward-teams": "./bin/cli.js"
+    "fwd": "bin/cli.js",
+    "forwward": "bin/cli.js",
+    "forwward-teams": "bin/cli.js"
   },
   "files": [
     "skills/",

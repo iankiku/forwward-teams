@@ -1,12 +1,12 @@
 {
   "name": "@iankiku/forwward-teams",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Lean skills for AI coding agents. No bloat, no context pollution.",
   "type": "module",
   "bin": {
-    "fwd": "./bin/cli.mjs",
-    "forwward": "./bin/cli.mjs",
-    "forwward-teams": "./bin/cli.mjs"
+    "fwd": "./bin/cli.js",
+    "forwward": "./bin/cli.js",
+    "forwward-teams": "./bin/cli.js"
   },
   "files": [
     "skills/",

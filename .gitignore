@@ -5,10 +5,15 @@ dist/
 # Dependencies
 node_modules/
 
-# Local Claude Code state — never commit
+# Local agent config dirs — never commit
 .claude/
 .claude.*
 .claudeignore
+.codex/
+.cursor/
+.windsurf/
+.gemini/
+.agents/
 # Keep .claude-plugin/ — contains plugin.json for Claude Code plugin discovery
 !.claude-plugin/
 !.claude-plugin/**

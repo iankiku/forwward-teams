@@ -91,7 +91,9 @@ check:
 
 publish: check
 	@echo ""
-	@read -p "Publish to npm? [y/N] " confirm && [ "$$confirm" = "y" ] || exit 1
+	@echo "Publishing @iankiku/forwward-teams@$$(node -p "require('./package.json').version")"
+	@echo "A browser window will open for 2FA verification."
+	@echo ""
 	npm publish --access public
 	@echo ""
 	@echo "Published. Verify: npx $$(node -p "require('./package.json').name") help"

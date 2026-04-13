@@ -8,10 +8,13 @@ import {
   writeFileSync,
   copyFileSync,
   chmodSync,
+  cpSync,
+  realpathSync,
 } from "node:fs";
-import { join, dirname, isAbsolute, resolve } from "node:path";
+import { homedir } from "node:os";
+import { join, dirname, isAbsolute, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { select, input, confirm } from "@inquirer/prompts";
+import { select, input, confirm, checkbox } from "@inquirer/prompts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PLUGIN_ROOT = join(__dirname, "..");
@@ -69,6 +72,150 @@ function findProjectRoot() {
   if (existsSync(join(process.cwd(), "package.json"))) return process.cwd();
   if (existsSync(join(process.cwd(), "pyproject.toml"))) return process.cwd();
   return process.cwd();
+}
+
+// ─── Platform definitions ───
+//
+// Each platform describes where its config lives, how to detect it, and
+// where forwward skills should be installed. Only platforms the user
+// explicitly selects get written to — no bloat from auto-installing to 33
+// agent systems the user doesn't use.
+
+const PLATFORMS = [
+  {
+    value: "claude-code",
+    name: "Claude Code (recommended)",
+    description: "Native skill support via .claude/skills/forwward/",
+    detect: (cwd) =>
+      existsSync(join(cwd, ".claude")) ||
+      existsSync(join(homedir(), ".claude")),
+    destDir: (cwd, scope) =>
+      scope === "global"
+        ? join(homedir(), ".claude", "skills", "forwward")
+        : join(cwd, ".claude", "skills", "forwward"),
+  },
+  {
+    value: "cursor",
+    name: "Cursor",
+    description: "Rules in .cursor/rules/forwward/",
+    detect: (cwd) => existsSync(join(cwd, ".cursor")),
+    destDir: (cwd) => join(cwd, ".cursor", "rules", "forwward"),
+  },
+  {
+    value: "windsurf",
+    name: "Windsurf",
+    description: "Rules in .windsurf/rules/forwward/",
+    detect: (cwd) =>
+      existsSync(join(cwd, ".windsurf")) ||
+      existsSync(join(cwd, ".windsurfrules")),
+    destDir: (cwd) => join(cwd, ".windsurf", "rules", "forwward"),
+  },
+  {
+    value: "codex",
+    name: "OpenAI Codex",
+    description: "Skills in .codex/skills/forwward/",
+    detect: (cwd) =>
+      existsSync(join(cwd, ".codex")) ||
+      existsSync(join(homedir(), ".codex")),
+    destDir: (cwd, scope) =>
+      scope === "global"
+        ? join(homedir(), ".codex", "skills", "forwward")
+        : join(cwd, ".codex", "skills", "forwward"),
+  },
+  {
+    value: "gemini",
+    name: "Gemini CLI",
+    description: "Skills in .gemini/skills/forwward/",
+    detect: (cwd) =>
+      existsSync(join(cwd, ".gemini")) || existsSync(join(cwd, "GEMINI.md")),
+    destDir: (cwd) => join(cwd, ".gemini", "skills", "forwward"),
+  },
+  {
+    value: "agents",
+    name: "Universal AGENTS.md",
+    description:
+      "Works with Amp, Factory, Aider, and any AGENTS.md-compatible tool",
+    detect: (cwd) => existsSync(join(cwd, "AGENTS.md")),
+    destDir: (cwd) => join(cwd, ".agents", "skills", "forwward"),
+  },
+];
+
+// Walk up `dest` to find the first ancestor that exists, then realpath it.
+// Returns true if that resolved path equals or is inside the source directory.
+// This catches the case where `.claude/skills` is a symlink back to the
+// source, which would otherwise create a self-copy via mkdirSync + cpSync.
+function destResolvesIntoSource(dest, src) {
+  try {
+    const realSrc = realpathSync(src);
+    let current = dest;
+    // Walk up to find an existing path (dest itself may not exist yet)
+    while (!existsSync(current)) {
+      const parent = dirname(current);
+      if (parent === current) return false;
+      current = parent;
+    }
+    const realCurrent = realpathSync(current);
+    return realCurrent === realSrc || realCurrent.startsWith(realSrc + sep);
+  } catch {
+    return false;
+  }
+}
+
+async function chooseAndInstallSkills(projectRoot, scope) {
+  const srcSkillsDir = join(PLUGIN_ROOT, "skills");
+  if (!existsSync(srcSkillsDir)) {
+    fail(`Skills directory not found at ${srcSkillsDir}`);
+    return [];
+  }
+
+  // Pre-check platforms the user already has configured
+  const detectedValues = new Set(
+    PLATFORMS.filter((p) => p.detect(projectRoot)).map((p) => p.value)
+  );
+
+  const selected = await checkbox({
+    message: "Which AI agents should receive the forwward skills?",
+    instructions:
+      " (space to toggle, a to toggle all, enter to confirm)",
+    choices: PLATFORMS.map((p) => ({
+      name: p.name,
+      value: p.value,
+      description: p.description,
+      checked: detectedValues.has(p.value),
+    })),
+    validate: (values) =>
+      values.length > 0 || "Pick at least one platform (or Ctrl+C to cancel)",
+  });
+
+  const installed = [];
+  for (const value of selected) {
+    const platform = PLATFORMS.find((p) => p.value === value);
+    const dest = platform.destDir(projectRoot, scope);
+
+    // Detect symlink loops: if dest (or its first existing ancestor)
+    // resolves into the source skills directory, we'd be copying the
+    // source into itself. This happens when a dev has .claude/skills
+    // symlinked back to the repo's skills/ directory.
+    if (destResolvesIntoSource(dest, srcSkillsDir)) {
+      warn(
+        `${platform.name}: skipping — destination resolves into source via symlink`
+      );
+      warn(`  ${dest}`);
+      warn(`  → ${realpathSync(dirname(dest))}`);
+      continue;
+    }
+
+    try {
+      mkdirSync(dest, { recursive: true });
+      cpSync(srcSkillsDir, dest, { recursive: true, force: true });
+      ok(`${platform.name}: ${dest}`);
+      installed.push({ platform: platform.value, dest });
+    } catch (err) {
+      fail(`${platform.name}: ${err.message}`);
+    }
+  }
+
+  return installed;
 }
 
 // ─── Copy hook scripts into project ───
@@ -321,12 +468,15 @@ async function install() {
 
   log(`\nInstalling skills (${scope})...\n`);
 
-  const flags = scope === "global" ? "-g -y" : "-y";
-  if (!run(`npx skills add ${REPO} ${flags}`)) {
-    fail("Skills install failed");
-    process.exit(1);
+  const detectedRoot = findProjectRoot();
+  const targetRoot = scope === "global" ? homedir() : detectedRoot;
+  const installed = await chooseAndInstallSkills(targetRoot, scope);
+
+  if (installed.length === 0) {
+    warn("No skills installed. Run `fwd install` later to retry.\n");
+    return;
   }
-  ok("Skills installed");
+  ok(`Skills installed to ${installed.length} platform(s)`);
   console.log("");
 
   const detected = findProjectRoot();
@@ -361,44 +511,155 @@ function printNextSteps() {
 `);
 }
 
-// ─── Commands ───
+// ─── Top-level commands ───
 
-const COMMANDS = {
-  install: async () => {
-    await install();
-  },
-  update: () => {
-    log("Updating forwward-teams skills...\n");
-    run(`npx skills update`);
-    ok("Done.\n");
-  },
-  init: async () => {
-    console.log(BANNER);
-    const detected = findProjectRoot();
-    const target = await resolveTargetPath(detected);
-    if (!target) {
-      log("Cancelled.\n");
-      return;
-    }
-    console.log("");
-    configureProject(target);
-    printNextSteps();
-  },
-  help: () => {
-    console.log(`
-  Usage:
-    fwd                    Interactive install
-    fwd init               Set up hooks + gate for current project
-    fwd install            Same as interactive install
-    fwd update             Update installed skills
-    fwd help               Show this message
+async function cmdInit(args) {
+  console.log(BANNER);
+  const detected = findProjectRoot();
+  const target = await resolveTargetPath(detected);
+  if (!target) {
+    log("Cancelled.\n");
+    return;
+  }
+  console.log("");
+  configureProject(target);
+  printNextSteps();
+}
 
-  Flags:
-    --global, -g           Install globally (all projects)
-    --project, -p          Install to current project
+function cmdHelp() {
+  console.log(`
+  forwward-teams v${VERSION} — lean skills · zero bloat
 
-  Also available as: forwward, forwward-teams, npx @iankiku/forwward-teams
+  USAGE
+    fwd <command> [args]
+
+  PROJECT SETUP
+    fwd init                    Set up hooks, gate, and settings for current project
+
+  SKILLS
+    fwd skills install          Install forwward skills (interactive scope + platform select)
+    fwd skills install -g       Install globally (~/), still asks for platforms
+    fwd skills install -p       Install to current project, still asks for platforms
+    fwd skills update           Update installed skills
+    fwd skills help             Show skills subcommand help
+
+  OTHER
+    fwd help                    Show this message
+
+  GETTING STARTED
+    fwd skills install          Pick the agents to install skills to
+    fwd init                    Set up hooks/gate for the current project
+
+  ALIASES
+    Also available as: forwward, forwward-teams, npx @iankiku/forwward-teams
 `);
+}
+
+// ─── Skills namespace ───
+
+async function cmdSkillsInstall(args) {
+  console.log(BANNER);
+
+  // Determine scope from flags or ask
+  let scope;
+  if (args.includes("--global") || args.includes("-g")) {
+    scope = "global";
+    log("Installing globally...\n");
+  } else if (args.includes("--project") || args.includes("-p")) {
+    scope = "project";
+    log("Installing to current project...\n");
+  } else {
+    scope = await select({
+      message: "Install scope?",
+      default: "global",
+      choices: [
+        {
+          name: "Global (all projects)",
+          value: "global",
+          description: "Install skills to ~/ — available everywhere",
+        },
+        {
+          name: "This project only",
+          value: "project",
+          description: "Install skills to current project",
+        },
+      ],
+    });
+  }
+
+  const targetRoot = scope === "global" ? homedir() : findProjectRoot();
+  const installed = await chooseAndInstallSkills(targetRoot, scope);
+
+  if (installed.length === 0) {
+    warn("No skills installed.\n");
+    return;
+  }
+  console.log("");
+  ok(`Skills installed to ${installed.length} platform(s)`);
+
+  // Offer to also set up hooks/gate for the project
+  if (scope === "project") {
+    console.log("");
+    const setupHooks = await confirm({
+      message: "Also set up hooks and gate for this project? (fwd init)",
+      default: true,
+    });
+    if (setupHooks) {
+      console.log("");
+      configureProject(targetRoot);
+    }
+  }
+
+  printNextSteps();
+}
+
+function cmdSkillsUpdate() {
+  log("Updating forwward-teams skills...\n");
+  log(
+    "To update skills, re-run: fwd skills install (it will overwrite existing copies)"
+  );
+  log("Or: cd to forwward-teams repo and `git pull && fwd skills install`\n");
+}
+
+function cmdSkillsHelp() {
+  console.log(`
+  forwward-teams skills — manage forwward skills
+
+  USAGE
+    fwd skills <command> [flags]
+
+  COMMANDS
+    install              Install skills (interactive scope + platform select)
+    update               Update installed skills
+    help                 Show this message
+
+  FLAGS (for install)
+    --global, -g         Install globally to ~/  (skip scope prompt)
+    --project, -p        Install to current project (skip scope prompt)
+
+  EXAMPLES
+    fwd skills install                    # Asks scope, then platforms
+    fwd skills install -g                 # Global, still asks platforms
+    fwd skills install -p                 # Project, still asks platforms
+`);
+}
+
+// ─── Command dispatch ───
+
+const TOP_LEVEL = {
+  help: cmdHelp,
+  init: cmdInit,
+};
+
+const NAMESPACES = {
+  skills: {
+    description: "Manage forwward skills",
+    commands: {
+      install: cmdSkillsInstall,
+      update: cmdSkillsUpdate,
+      help: cmdSkillsHelp,
+    },
+    helpFn: cmdSkillsHelp,
   },
 };
 
@@ -406,36 +667,45 @@ const COMMANDS = {
 
 async function main() {
   const args = process.argv.slice(2);
-  const command = args[0];
+  const first = args[0];
 
-  if (command && COMMANDS[command]) {
-    await COMMANDS[command]();
+  // No args → show help
+  if (!first) {
+    cmdHelp();
     return;
   }
 
-  // --global and --project skip prompts, keep fast path
-  if (args.includes("--global") || args.includes("-g")) {
-    console.log(BANNER);
-    log("Installing globally...\n");
-    if (!run(`npx skills add ${REPO} -g -y`)) process.exit(1);
-    ok("Skills installed");
-    printNextSteps();
+  // Top-level command (init, help)
+  if (TOP_LEVEL[first]) {
+    await TOP_LEVEL[first](args.slice(1));
     return;
   }
 
-  if (args.includes("--project") || args.includes("-p")) {
-    console.log(BANNER);
-    log("Installing to current project...\n");
-    if (!run(`npx skills add ${REPO} -y`)) process.exit(1);
-    ok("Skills installed");
+  // Namespaced command (skills <action>, agent <action>, ...)
+  if (NAMESPACES[first]) {
+    const ns = NAMESPACES[first];
+    const subcommand = args[1];
+
+    if (!subcommand || subcommand === "help" || subcommand === "--help") {
+      ns.helpFn();
+      return;
+    }
+
+    if (ns.commands[subcommand]) {
+      await ns.commands[subcommand](args.slice(2));
+      return;
+    }
+
+    fail(`Unknown command: ${first} ${subcommand}`);
     console.log("");
-    configureProject(findProjectRoot());
-    printNextSteps();
-    return;
+    ns.helpFn();
+    process.exit(1);
   }
 
-  // Default: interactive install
-  await install();
+  fail(`Unknown command: ${first}`);
+  console.log("");
+  cmdHelp();
+  process.exit(1);
 }
 
 main().catch(handleCancel);

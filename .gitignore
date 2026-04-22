@@ -21,8 +21,19 @@ node_modules/
 # Session-specific data — never commit
 memory/
 agent-memory/
-*sessions.txt
+sessions.txt
+sessions*.txt
+*sessions*.txt
 *-sessions.md
+session-*.md
+session-*.txt
+*-session.md
+planning*.md
+planning*.txt
+*-planning.md
+*-planning.txt
+*session-memory*
+*session-notes*
 
 # Images / assets not used by the package
 forwward.png

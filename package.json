@@ -1,6 +1,6 @@
 {
   "name": "@iankiku/forwward-teams",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Lean skills for AI coding agents. No bloat, no context pollution.",
   "type": "module",
   "bin": {

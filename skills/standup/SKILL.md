@@ -1,9 +1,9 @@
 ---
-name: leadership-update
-description: (forwward) Writes status updates leaders actually read — outcome-first, with options + lean for blockers. Always invoke for: "write an update for [name/team/client]", "status report", "progress update", "weekly update", "standup note", "executive summary", "update on [project]", "what do I tell [person] about [X]". Also invoke proactively when the user pastes project details without saying what to do — they probably want an update drafted. Pulls from git log, open PRs, project tracker, and meeting notes, then applies the outcome-reasoning-next structure with a clear ask at the end. Not for PRDs, postmortems, or peer engineering discussion.
+name: standup
+description: (forwward) Writes status updates leaders actually read — outcome-first, with options + lean for blockers. Always invoke for: "standup", "standup note", "write an update for [name/team/client]", "status report", "progress update", "weekly update", "executive summary", "update on [project]", "what do I tell [person] about [X]". Also invoke proactively when the user pastes project details without saying what to do — they probably want an update drafted. Reads from git log, open PRs, project tracker, meeting notes, and the team-memory/ directory written by /dream-team. Applies the outcome-reasoning-next structure with a clear ask at the end. Not for PRDs, postmortems, or peer engineering discussion.
 ---
 
-# Leadership Update
+# Standup
 
 ## Core principle
 

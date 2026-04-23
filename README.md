@@ -28,7 +28,8 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/write` | Writer | Blog posts, X threads, newsletters — founder voice |
 | `/voice` | Voice Coach | Captures your writing style so `/write`, `/gtm`, `/pcp-engine`, `/sales` sound like you |
 | `/technical-writer` | Tech Writer | Docs, runbooks, API references, READMEs — structured discovery before drafting |
-| `/leadership-update` | Chief of Staff | Status updates that leaders actually read — outcome-first, with options + lean for blockers |
+| `/standup` | Chief of Staff | Status updates that leaders actually read — outcome-first, with options + lean for blockers |
+| `/dream-team` | Memory Consolidator | REM sleep for the team — reads what shipped, writes shared memory of decisions, fixes, and learnings |
 | `/gtm` | Growth | Viral loops, launch playbooks, K-factor optimization |
 | `/pcp-engine` | Copywriter | Conversion copy, landing pages, email sequences — ICP-targeted |
 | `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries |

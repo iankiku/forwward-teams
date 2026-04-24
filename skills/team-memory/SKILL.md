@@ -1,9 +1,9 @@
 ---
-name: dream-team
-description: (forwward) Consolidates recent team work — commits, PRs, decisions, bug fixes, learnings — into a shared team memory file. Like REM sleep for the team. Always invoke for: "dream", "dream-team", "consolidate memory", "consolidate what we shipped", "remember what we did", "update team memory", "team memory", "shared memory", "REM consolidation", "what did we ship this [week/sprint/month]". Also invoke proactively after a PR merges, after a release, at the end of a sprint, or when wrapping up a major piece of work. Reads git log, merged PRs, CHANGELOG, ADRs, and the current conversation, then appends structured entries to `team-memory/MEMORY.md` covering Shipped, Decisions (with WHY), Fixes (with root cause), Learnings, and Open Threads. The memory file is git-tracked so the whole team — humans and future AI agents — share the same history. Not for one-off summaries (use /standup) or detailed postmortems.
+name: team-memory
+description: (forwward) Consolidates recent team work — commits, PRs, decisions, bug fixes, learnings — into a shared `team-memory/MEMORY.md` file. Like REM sleep for the team. Always invoke for: "team memory", "team-memory", "consolidate memory", "consolidate what we shipped", "remember what we did", "update team memory", "shared memory", "what did we ship this [week/sprint/month]". Also invoke proactively after a PR merges, after a release, at the end of a sprint, or when wrapping up a major piece of work. Reads git log, merged PRs, CHANGELOG, ADRs, and the current conversation, then appends structured entries covering Shipped, Decisions (with WHY), Fixes (with root cause), Learnings, and Open Threads. The memory file is git-tracked so the whole team — humans and future AI agents — share the same history. Not for one-off summaries (use /standup) or detailed postmortems.
 ---
 
-# Dream Team
+# Team Memory
 
 ## Why this exists
 
@@ -11,12 +11,12 @@ While you work, context is rich. Decisions, rejected paths, root causes, the "we
 
 The next teammate (human or AI) reads the code and the git log, but those only capture **what** changed, not **why**. They re-discover the same dead ends. They re-debug the same root causes. They suggest the same approach you already rejected.
 
-`/dream-team` is REM sleep for the team. It consolidates the rich in-session context into a durable, git-tracked memory file every team member can read — and every future AI agent can grep before suggesting a path you've already walked.
+`/team-memory` is REM sleep for the team. It consolidates the rich in-session context into a durable, git-tracked memory file every team member can read — and every future AI agent can grep before suggesting a path you've already walked.
 
 ## When to run
 
 Manual triggers:
-- "dream" / "dream-team" / "consolidate memory"
+- "team-memory" / "consolidate memory" / "consolidate what we shipped"
 - "what did we ship this week / sprint / month"
 - "remember what we did"
 - "update team memory"
@@ -75,7 +75,7 @@ Surprises. Things that would have saved time if known earlier. Default assumptio
 Work in flight. What's NOT done. What's blocked, and on whom.
 
 > - npm `0.4.1` not yet on registry — blocked on user configuring NPM_TOKEN or OIDC trust.
-> - `/dream-team` itself just shipped — first real consolidation run pending.
+> - `/team-memory` itself just shipped — first real consolidation run pending.
 
 ## Step 4: Append to the memory file
 
@@ -86,7 +86,7 @@ If the file doesn't exist, create it with this header first:
 ```markdown
 # Team Memory
 
-Consolidated by `/dream-team`. Each section is REM sleep for the team — what shipped, what was decided and why, what broke and why, what to remember, and what's still open.
+Consolidated by `/team-memory`. Each section is REM sleep for the team — what shipped, what was decided and why, what broke and why, what to remember, and what's still open.
 
 Append-only. Read top-to-bottom for chronological history; grep for the topic you're about to work on before you start.
 ```

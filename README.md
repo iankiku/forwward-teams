@@ -30,6 +30,10 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/technical-writer` | Tech Writer | Docs, runbooks, API references, READMEs — structured discovery before drafting |
 | `/standup` | Chief of Staff | Status updates that leaders actually read — outcome-first, with options + lean for blockers |
 | `/team-memory` | Memory Consolidator | REM sleep for the team — reads what shipped, writes shared memory of decisions, fixes, and learnings |
+| `/meeting` | Meeting Scribe | Turns transcripts or rough notes into decisions, action items (owner + deadline), and open questions |
+| `/hire` | Talent Partner | Job descriptions, interview rubrics, scorecards, and offer letter templates for any role |
+| `/ops` | Ops Writer | SOPs, process docs, runbooks, and handoff docs for non-technical and cross-functional teams |
+| `/deck` | Presentation Strategist | Slide structure and content for pitches, QBRs, board updates — the argument, not the design |
 | `/gtm` | Growth | Viral loops, launch playbooks, K-factor optimization |
 | `/pcp-engine` | Copywriter | Conversion copy, landing pages, email sequences — ICP-targeted |
 | `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries |

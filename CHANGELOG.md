@@ -1,5 +1,14 @@
 # @iankiku/forwward-teams
 
+## 0.4.3
+
+### Patch Changes
+
+- Add `/meeting` skill — turns transcripts or rough notes into decisions, action items (with owner + deadline), and open questions. Works for standups, 1:1s, client calls, retros, and all-hands.
+- Add `/hire` skill — job descriptions, interview rubrics, scorecards, and offer letter templates for any role, technical or non-technical.
+- Add `/ops` skill — SOPs, process docs, runbooks, and handoff docs for CS, ops, finance, HR, and cross-functional teams.
+- Add `/deck` skill — slide-by-slide structure and content for pitches, QBRs, board updates, and all-hands. Narrative and argument, not design.
+
 ## 0.4.2
 
 ### Patch Changes

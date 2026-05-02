@@ -57,9 +57,33 @@ Before writing anything, apply this filter. The memory file is git-tracked and v
 
 If you encounter content that mixes project signal with personal content (e.g., a chat log where someone describes a bug but also mentions personal details), extract only the technical signal and discard the rest.
 
+## Step 0.5: Recursive discovery
+
+Before reading anything, find all context files across the whole repo. This handles monorepos, multi-package workspaces, and projects where sub-teams maintain their own CLAUDE.md or local memory.
+
+```bash
+# All CLAUDE.md / AGENTS.md files (exclude node_modules, .git, generated dirs)
+find . \( -name "CLAUDE.md" -o -name "AGENTS.md" \) \
+  -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/dist/*"
+
+# All .claude/ directories (local project settings, hooks, nested memory)
+find . -type d -name ".claude" \
+  -not -path "*/node_modules/*" -not -path "*/.git/*"
+
+# All existing team-memory files (nested packages may have their own)
+find . -path "*/team-memory/MEMORY.md" \
+  -not -path "*/node_modules/*" -not -path "*/.git/*"
+```
+
+**For each CLAUDE.md found:** read it — nested packages often declare their own tracker, conventions, or off-limits decisions that root CLAUDE.md doesn't know about.
+
+**For each `.claude/` found:** check for local `project.json` (build commands), `hooks/` (automation decisions), or `settings.json` (team-level tool permissions). These are signal for the Decisions section.
+
+**For each nested `team-memory/MEMORY.md` found:** read it as an additional watermark source. Use the most recent date across all memory files as the global watermark in Step 2. When writing, append to each file that covers the affected package — don't collapse a multi-package monorepo into the root memory if the packages have independent histories.
+
 ## Step 1: Detect the tracker
 
-Read `CLAUDE.md`, `AGENTS.md`, or `README.md` for signals about where work is tracked:
+Read all discovered `CLAUDE.md` / `AGENTS.md` files (not just root) for signals about where work is tracked:
 
 | Signal in CLAUDE.md | Tracker |
 |---------------------|---------|
@@ -75,9 +99,9 @@ If a tracker is identified, pull from it after pulling git data. Use the appropr
 
 ## Step 2: Find the watermark
 
-Read `team-memory/MEMORY.md`. The most recent date header is the **watermark** — anything since that date is new and needs consolidation.
+Read all `team-memory/MEMORY.md` files discovered in Step 0.5. Scan each for its most recent date header (`## YYYY-MM-DD`). Take the **latest date across all files** as the global watermark — anything since that date is new and needs consolidation.
 
-If the file doesn't exist, this is the first run. Use 30 days ago as the watermark and create the file with the header in Step 5.
+If no memory file exists anywhere, this is the first run. Use 30 days ago as the watermark and create the file(s) in Step 5.
 
 ## Step 3: Gather what's new since the watermark
 
@@ -128,7 +152,13 @@ Work in flight. What's NOT done. What's blocked and on whom.
 
 ## Step 5: Append to the memory file
 
-Open `team-memory/MEMORY.md` and append a new dated section. Do not rewrite earlier sections — memory is append-only.
+Decide where to write based on what Step 0.5 found:
+
+- **Single-package repo** (one root CLAUDE.md, no nested packages): write to `team-memory/MEMORY.md` at the root.
+- **Monorepo with independent packages** (each has its own CLAUDE.md or existing `team-memory/`): write to each package's own `team-memory/MEMORY.md`, scoping each entry to that package's changes only. Also write a brief cross-package summary to root `team-memory/MEMORY.md` — major decisions that span multiple packages belong at the root level.
+- **Monorepo without per-package memory yet**: default to root-only unless the user says otherwise.
+
+Open the target file(s) and append a new dated section. Do not rewrite earlier sections — memory is append-only.
 
 If the file doesn't exist, create it with this header first:
 

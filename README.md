@@ -10,38 +10,50 @@
 
 Most agents drown in skills. Every skill you add inflates context, burns tokens, and degrades output quality. We've seen agents with 50+ skills produce worse results than one with 5 — because the model spends half its context window just reading instructions it won't use.
 
-**forwward-teams is a lean skills set for technical founders.** Everything you need, nothing you don't.
+**forwward-teams is a lean skills set for founders and their teams.** Everything you need, nothing you don't. Built for technical teams but includes skills for ops, hiring, meetings, presentations, and writing — the whole team, not just engineering.
 
 ## What You Get
+
+### For the whole team
 
 | Skill | Your Team Member | Does What |
 |-------|-----------------|-----------|
 | `/start` | Onboarding | Learns your company, initializes env, recommends first skills |
 | `/onboard` | Setup Assistant | Configures new agents — 10 questions, tests tools, sets guardrails |
-| `/team-lead` | Lead | Composes agent teams, coordinates parallel work |
-| `/ceo` | CEO | Vision, OKRs, hiring, fundraising, pivot-or-persist |
-| `/cto` | CTO | Architecture decisions, build-vs-buy, PRDs, tech debt |
-| `/architect` | System Designer | DB selection, project structure, API design, caching, scaling |
-| `/build` | Engineer | Fullstack — TypeScript + Python, design patterns |
-| `/gate` | QA | Self-healing verification: lint → types → build → tests |
-| `/strategy` | Strategist | Customer discovery, ICP, pricing, competitive intel |
+| `/standup` | Chief of Staff | Status updates that leaders actually read — outcome-first, with options + lean for blockers |
+| `/meeting` | Meeting Scribe | Turns transcripts or rough notes into decisions, action items (owner + deadline), and open questions |
 | `/write` | Writer | Blog posts, X threads, newsletters — founder voice |
 | `/voice` | Voice Coach | Captures your writing style so `/write`, `/gtm`, `/pcp-engine`, `/sales` sound like you |
-| `/technical-writer` | Tech Writer | Docs, runbooks, API references, READMEs — structured discovery before drafting |
-| `/standup` | Chief of Staff | Status updates that leaders actually read — outcome-first, with options + lean for blockers |
-| `/team-memory` | Memory Consolidator | REM sleep for the team — reads what shipped, writes shared memory of decisions, fixes, and learnings |
-| `/meeting` | Meeting Scribe | Turns transcripts or rough notes into decisions, action items (owner + deadline), and open questions |
+| `/deck` | Presentation Strategist | Slide structure and content for pitches, QBRs, board updates — the argument, not the design |
 | `/hire` | Talent Partner | Job descriptions, interview rubrics, scorecards, and offer letter templates for any role |
 | `/ops` | Ops Writer | SOPs, process docs, runbooks, and handoff docs for non-technical and cross-functional teams |
-| `/deck` | Presentation Strategist | Slide structure and content for pitches, QBRs, board updates — the argument, not the design |
-| `/gtm` | Growth | Viral loops, launch playbooks, K-factor optimization |
-| `/pcp-engine` | Copywriter | Conversion copy, landing pages, email sequences — ICP-targeted |
-| `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries |
+| `/team-memory` | Memory Consolidator | REM sleep for the team — reads what shipped, writes shared memory of decisions, fixes, and learnings |
+
+### Engineering
+
+| Skill | Your Team Member | Does What |
+|-------|-----------------|-----------|
+| `/team-lead` | Lead | Composes agent teams, coordinates parallel work |
+| `/cto` | CTO | Architecture decisions, build-vs-buy, PRDs, tech debt |
+| `/architect` | System Designer | DB selection, project structure, API design, caching, scaling — detects your stack |
+| `/build` | Engineer | Fullstack across any stack — detects TypeScript, Python, Go, Rails, Java, Rust and adapts |
+| `/gate` | QA | Self-healing verification: lint → types → build → tests — works with any build system |
+| `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries, OWASP |
 | `/ship` | Release Eng | Branch, verify, push, PR — release automation |
 | `/design` | Designer | Anti-slop UI/UX — real design principles, no AI aesthetics |
-| `/devops` | SRE | CI/CD, Docker, monitoring, alerting, incident response |
+| `/devops` | SRE | CI/CD, Docker (Node/Python/Go/Rails), monitoring, alerting, incident response |
+| `/security` | InfoSec | OWASP, HIPAA, SOC 2, auth, encryption — stack-neutral |
 | `/data` | Analyst | SQL, metrics, dashboards, event tracking, cohort analysis |
-| `/security` | InfoSec | OWASP, HIPAA, SOC 2, auth, encryption, compliance |
+| `/technical-writer` | Tech Writer | Docs, runbooks, API references, READMEs — structured discovery before drafting |
+
+### Business
+
+| Skill | Your Team Member | Does What |
+|-------|-----------------|-----------|
+| `/ceo` | CEO | Vision, OKRs, hiring, fundraising, pivot-or-persist |
+| `/strategy` | Strategist | Customer discovery, ICP, pricing, competitive intel |
+| `/gtm` | Growth | Viral loops, launch playbooks, K-factor optimization |
+| `/pcp-engine` | Copywriter | Conversion copy, landing pages, email sequences — ICP-targeted |
 | `/finance` | CFO | Unit economics, burn rate, runway, financial models |
 | `/sales` | AE | Outreach, demos, objection handling, pipeline management |
 | `/legal` | Counsel | ToS, privacy, contracts, IP, licensing — industry-aware |
@@ -96,6 +108,9 @@ npx skills update
 /strategy  Define our ICP for enterprise sales
 /write     Thread about what we learned shipping v2
 /gtm       Design the referral loop for our waitlist
+/meeting   Paste your call transcript — get decisions + action items
+/standup   Write my update for the leadership team
+/hire      Write a JD for a senior backend engineer
 /gate
 /review
 /ship
@@ -111,6 +126,7 @@ npx skills add → copies SKILL.md files → your agent loads them on demand
 - **No dependencies** — pure markdown, works in any repo
 - **No lock-in** — delete any skill independently, they're self-contained
 - **Cross-platform** — same format works across Claude, Gemini, Cursor, Codex, OpenCode
+- **Stack-agnostic** — technical skills detect your project's stack and adapt (TypeScript, Python, Go, Rails, Java, Rust, and more)
 
 ## Philosophy
 

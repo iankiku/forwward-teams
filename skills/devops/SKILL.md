@@ -34,8 +34,10 @@ push → lint → typecheck → test → build → deploy staging → smoke test
 
 ## Docker
 
+Always use multi-stage builds to keep images small. Detect the stack and use the appropriate base image.
+
+### Node.js / TypeScript
 ```dockerfile
-# Multi-stage build — keep images small
 FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -51,11 +53,59 @@ EXPOSE 3000
 CMD ["node", "dist/server.js"]
 ```
 
-**Rules:**
+### Python
+```dockerfile
+FROM python:3.12-slim AS builder
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+FROM python:3.12-slim
+WORKDIR /app
+COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY . .
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+### Go
+```dockerfile
+FROM golang:1.22-alpine AS builder
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o server ./cmd/api
+
+FROM alpine:3.19
+WORKDIR /app
+COPY --from=builder /app/server .
+EXPOSE 8080
+CMD ["./server"]
+```
+
+### Ruby on Rails
+```dockerfile
+FROM ruby:3.3-slim AS builder
+WORKDIR /app
+COPY Gemfile Gemfile.lock ./
+RUN bundle install --without development test
+
+FROM ruby:3.3-slim
+WORKDIR /app
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY . .
+EXPOSE 3000
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+```
+
+For other stacks (Java/JVM, .NET, Rust): same pattern — build stage compiles, final stage is minimal. Never copy the build toolchain into the final image.
+
+**Rules for all stacks:**
 - Always pin base image versions (not `latest`)
-- Use `.dockerignore` — never ship `node_modules`, `.git`, `.env`
+- Use `.dockerignore` — never ship build artifacts, `.git`, or `.env` files
 - One process per container
-- Health check in Dockerfile: `HEALTHCHECK CMD curl -f http://localhost:3000/health`
+- Add a health check: `HEALTHCHECK CMD curl -f http://localhost:<PORT>/health || exit 1`
 
 ## Monitoring
 

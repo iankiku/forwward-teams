@@ -18,7 +18,7 @@ You are reviewing code that will run in production. Assume:
 ## Review Checklist
 
 ### 1. Trust Boundaries
-- [ ] User input validated at the boundary (Zod, schema)
+- [ ] User input validated at the boundary using the stack's schema/validation tool
 - [ ] Auth checked before business logic
 - [ ] No secrets in client-accessible code
 - [ ] API responses don't leak internal details
@@ -48,7 +48,7 @@ You are reviewing code that will run in production. Assume:
 - [ ] Partial failures don't leave corrupt state
 
 ### 6. Security (OWASP Top 10)
-- [ ] No SQL injection (parameterized queries)
+- [ ] No injection attacks (parameterized queries, prepared statements, ORM guards — never string-concat into SQL or shell commands)
 - [ ] No XSS (output encoding, CSP headers)
 - [ ] No CSRF (tokens on state-changing requests)
 - [ ] No insecure direct object references

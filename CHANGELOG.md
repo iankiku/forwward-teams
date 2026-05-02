@@ -1,5 +1,15 @@
 # @iankiku/forwward-teams
 
+## 0.4.5
+
+### Patch Changes
+
+- Upgrade `/ship` — rewritten as a full-stack shipping engineer + SRE playbook. Three flows: PR (gate → squash → push), release (gate → version bump → changelog → tag → dry-run → confirm → deploy → health check → /team-memory), hotfix (fast-track gate → merge → monitor → regression test). Stack detection across Node, Go, Python, Ruby/Rails, Rust, Java, Terraform, Pulumi, AWS SAM/Lambda, and CDK. SRE gates: change freeze detection, deploy-window warnings, rollback reference, post-deploy health verification. Rollback table for every stack.
+- Add release notes step to `/ship` release flow — user-facing notes (New / Improved / Fixed + how-to-update) saved to `RELEASE_NOTES.md` and posted to GitHub Releases via `gh release create`.
+- Upgrade `/team-memory` — monorepo-aware recursive discovery: finds all `CLAUDE.md`, `AGENTS.md`, and `.claude/` directories across the repo before consolidating. Uses the latest watermark across all discovered memory files. Multi-package write strategy: per-package memory for independent packages, cross-package root summary for shared decisions.
+- Add frontend slop patterns to `/audit` — visual defaults (purple gradients, pill buttons, cardocalypse), typography slop (Inter monoculture, overused display fonts), CSS technical debt (hardcoded hex, magic numbers, duplicate shadows), component slop (prop drilling, untouched Shadcn, god components), AI-specific noise (hallucinated imports, any-type abuse, key={index}), and content slop (em dashes, vague CTAs, lorem ipsum).
+- Add GitHub issue templates — skill output quality, new skill requests, install/CLI problems. Feedback section added to README with direct links.
+
 ## 0.4.4
 
 ### Patch Changes

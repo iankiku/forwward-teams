@@ -27,7 +27,7 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/deck` | Presentation Strategist | Slide structure and content for pitches, QBRs, board updates — the argument, not the design |
 | `/hire` | Talent Partner | Job descriptions, interview rubrics, scorecards, and offer letter templates for any role |
 | `/ops` | Ops Writer | SOPs, process docs, runbooks, and handoff docs for non-technical and cross-functional teams |
-| `/team-memory` | Memory Consolidator | REM sleep for the team — reads what shipped, writes shared memory of decisions, fixes, and learnings |
+| `/team-memory` | Memory Consolidator | REM sleep for the team — git, PRs, tracker tickets, decisions + WHY, root causes. Monorepo-aware: recursively discovers nested CLAUDE.md and .claude/ directories |
 
 ### Engineering
 
@@ -38,9 +38,9 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/architect` | System Designer | DB selection, project structure, API design, caching, scaling — detects your stack |
 | `/build` | Engineer | Fullstack across any stack — detects TypeScript, Python, Go, Rails, Java, Rust and adapts |
 | `/gate` | QA | Self-healing verification: lint → types → build → tests — works with any build system |
-| `/audit` | Senior Engineer | Removes slop, dead code, DRY violations, and SOLID violations — one commit, no behavior changes |
+| `/audit` | Senior Engineer | Aggressive de-slop: dead code, DRY/SOLID violations, AI noise, frontend slop patterns — one commit, behavior-preserving |
 | `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries, OWASP |
-| `/ship` | Release Eng | Branch, verify, push, PR — release automation |
+| `/ship` | Shipping Engineer | Full pipeline: gate → squash → PR, or release (version bump → changelog → tag → dry-run → publish → health check). Hotfix fast-track. Covers Node, Go, Python, Ruby, Rust, Java, Terraform, Pulumi, Lambda, CDK |
 | `/design` | Designer | Anti-slop UI/UX — real design principles, no AI aesthetics |
 | `/devops` | SRE | CI/CD, Docker (Node/Python/Go/Rails), monitoring, alerting, incident response |
 | `/security` | InfoSec | OWASP, HIPAA, SOC 2, auth, encryption — stack-neutral |
@@ -112,9 +112,10 @@ npx skills update
 /meeting   Paste your call transcript — get decisions + action items
 /standup   Write my update for the leadership team
 /hire      Write a JD for a senior backend engineer
-/gate
-/review
-/ship
+/audit    # de-slop before you ship
+/gate     # verify everything passes
+/review   # paranoid code review
+/ship     # PR flow, release flow, or hotfix
 ```
 
 ## How It Works

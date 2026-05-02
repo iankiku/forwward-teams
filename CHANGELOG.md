@@ -8,6 +8,7 @@
 - Add `/hire` skill — job descriptions, interview rubrics, scorecards, and offer letter templates for any role, technical or non-technical.
 - Add `/ops` skill — SOPs, process docs, runbooks, and handoff docs for CS, ops, finance, HR, and cross-functional teams.
 - Add `/deck` skill — slide-by-slide structure and content for pitches, QBRs, board updates, and all-hands. Narrative and argument, not design.
+- De-bias all technical skills — `/build`, `/architect`, `/devops`, `/security`, `/review`, `/gate` now detect the project stack first (Go, Ruby/Rails, Java, Rust, Python, TypeScript, .NET) and adapt advice accordingly. No more TypeScript/Next.js assumptions.
 
 ## 0.4.2
 

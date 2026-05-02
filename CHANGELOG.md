@@ -1,5 +1,12 @@
 # @iankiku/forwward-teams
 
+## 0.4.4
+
+### Patch Changes
+
+- Add `/audit` skill — aggressively removes slop, dead code, DRY violations, and SOLID violations in one behavior-preserving commit. Detects the stack, respects team-memory decisions, and verifies with /gate. Invocable standalone or from /gate as a pre-ship clean pass.
+- Update `/gate` to support optional `/audit` invocation before the verification loop.
+
 ## 0.4.3
 
 ### Patch Changes

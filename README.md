@@ -38,6 +38,7 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/architect` | System Designer | DB selection, project structure, API design, caching, scaling — detects your stack |
 | `/build` | Engineer | Fullstack across any stack — detects TypeScript, Python, Go, Rails, Java, Rust and adapts |
 | `/gate` | QA | Self-healing verification: lint → types → build → tests — works with any build system |
+| `/audit` | Senior Engineer | Removes slop, dead code, DRY violations, and SOLID violations — one commit, no behavior changes |
 | `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries, OWASP |
 | `/ship` | Release Eng | Branch, verify, push, PR — release automation |
 | `/design` | Designer | Anti-slop UI/UX — real design principles, no AI aesthetics |

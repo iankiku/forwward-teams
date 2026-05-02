@@ -34,6 +34,18 @@ Or init from the plugin CLI if available:
 ${CLAUDE_PLUGIN_ROOT}/scripts/cli init
 ```
 
+## Optional: Audit pass
+
+Before running the loop, gate can invoke `/audit` to clean the branch first:
+
+```
+/audit          # de-slop + DRY + dead code on changed files only
+```
+
+Run audit when: the user says "clean before shipping", the diff is large and messy, or this is a pre-release gate. Skip audit for hotfixes and small patches — the loop is enough.
+
+Audit scope when invoked from gate: files changed on this branch only (`git diff main...HEAD`). Full-codebase audit is a separate invocation.
+
 ## The Loop
 
 Run up to 4 iterations:

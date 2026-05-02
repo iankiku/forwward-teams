@@ -60,6 +60,49 @@ Slop is code that compiles and passes tests but silently rots the codebase. It l
 - Commented-out code blocks that haven't been uncommented in 30+ days (check `git log`)
 - Placeholder text: "Lorem ipsum", "TODO: implement", "example value"
 
+### Frontend slop (skip if no frontend in scope)
+
+Check for a `components/`, `pages/`, `app/`, `src/` with `.tsx`/`.jsx`/`.vue`/`.svelte` before running this section.
+
+**Visual defaults — the AI aesthetic fingerprint:**
+- Purple or blue gradient backgrounds: `background: linear-gradient(...)` as a default, not a deliberate brand choice
+- Pill-shaped buttons everywhere: `border-radius: 9999px` on all buttons regardless of context
+- Symmetric three-card grids used as a default layout for any list of items
+- Oversized hero sections with centered headline + subtext + CTA — the AI landing page template
+- Gradient text (`background-clip: text`) applied to headings with no design rationale
+- Nested card-in-card-in-card layouts ("cardocalypse") — visual hierarchy through nesting instead of spacing/type
+
+**Typography slop:**
+- `font-family: 'Inter', sans-serif` globally with no hierarchy — Inter as the only typeface
+- Display/hero fonts (Fraunces, Geist, Mona Sans, Plus Jakarta Sans, Space Grotesk, Recoleta, Instrument Sans) applied to ALL headings, not just display moments
+- No size/weight hierarchy — every heading the same weight, only size differs
+- Hero copy that word-wraps awkwardly on mobile (no `max-width` or responsive sizing)
+
+**CSS technical slop:**
+- Hardcoded hex colors inline instead of CSS custom properties or design tokens: `color: #6366f1` not `color: var(--primary)`
+- Magic number pixel values: `margin-top: 73px`, `padding: 17px 23px` — numbers no one can explain
+- Duplicate shadow recipes defined multiple times: `box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1)` copy-pasted across components
+- Inconsistent `border-radius` — `4px` in one component, `6px` in another, `8px` in a third, no token
+- Inline styles in JSX/TSX instead of CSS classes or utility classes
+
+**Component slop:**
+- Prop drilling 3+ levels deep — passing `userId` through components that don't use it to reach one that does
+- Shadcn/Radix/headless-UI components used as-is with zero customization — shipped exactly as the CLI generated them
+- Cookie-cutter components that ignore context — a `<Card>` that looks identical whether it's a user profile, a product, or an error message
+- God components — one component that renders the whole page, handles all state, and calls all APIs
+
+**AI-specific frontend noise:**
+- Hallucinated imports: `import { useRouter } from 'react'` (should be `'next/router'`), `import { useState } from 'react-dom'`
+- `any` type abuse in TypeScript props: `props: any`, `event: any`, `data: any`
+- Unused component props that are accepted but never used (check with TypeScript or grep)
+- `key={index}` on lists where items have stable IDs available
+
+**Content slop:**
+- Em dashes in every sentence — the AI prose fingerprint
+- Vague CTAs: "Get Started", "Learn More", "Click Here" with no specificity
+- Lorem ipsum or placeholder copy that made it to a real environment
+- Marketing superlatives with no evidence: "blazing fast", "enterprise-grade", "seamlessly"
+
 ## Step 3: Tech debt audit
 
 **Mark every instance of:**

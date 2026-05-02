@@ -94,7 +94,39 @@ git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- %s"
 ```
 Group into **Added**, **Fixed**, **Changed**, **Removed**. Append to `CHANGELOG.md` — do not rewrite existing entries.
 
-### B4. Commit, squash, and merge
+### B4. Draft release notes
+
+Release notes are user-facing — different from CHANGELOG.md, which is developer-facing. Write them before committing so they can be reviewed alongside the version bump.
+
+Format:
+
+```markdown
+## What's new in v<version>
+
+### New
+- **`/skill-name`** — one sentence: what it does and when to reach for it.
+  _Usage: `/skill-name <args>` — example invocation._
+
+### Improved
+- **`/skill-name`** — what changed and why it's better for the user.
+
+### Fixed
+- Brief description of any user-visible bug that was resolved.
+
+### How to update
+npx skills update
+# or: npm update @iankiku/forwward-teams / pip install -U <pkg> / go get -u ...
+```
+
+Rules:
+- Write for users, not developers. Avoid commit-speak ("refactor X", "fix Y race condition").
+- Lead with the outcome: "Now works with Go and Python projects" not "Added stack detection".
+- If a skill is new, show a one-line usage example.
+- Keep it short — this is the release post, not the docs.
+
+Save to `RELEASE_NOTES.md` at the repo root (overwrite each release — this file always reflects the latest release only).
+
+### B5. Commit, squash, and merge
 ```bash
 git add -A
 git commit -m "chore: release v<version>"
@@ -104,13 +136,20 @@ gh pr merge --squash --delete-branch
 git checkout main && git pull origin main
 ```
 
-### B5. Tag
+### B6. Tag and publish GitHub Release
 ```bash
 git tag v<version>
 git push origin v<version>
+
+# Create the GitHub Release with the notes from B4
+gh release create v<version> \
+  --title "v<version>" \
+  --notes-file RELEASE_NOTES.md
 ```
 
-### B6. Dry-run — always before publish/deploy
+`gh release create` posts the release notes to GitHub Releases automatically. Users watching the repo get notified; the release appears on the repo homepage.
+
+### B7. Dry-run — always before publish/deploy
 
 Show the output. Do not proceed until the user confirms.
 
@@ -128,12 +167,12 @@ Show the output. Do not proceed until the user confirms.
 
 > "Dry-run passed — [N files / N resources / changes summary]. Proceed with publish/deploy?"
 
-### B7. Publish / deploy
+### B8. Publish / deploy
 Run only after explicit confirmation. Use the deploy command from the Step 0 table for the detected stack.
 
 For infra stacks (Terraform, Pulumi, CDK, SAM): show the plan summary (resources to add / change / destroy) and require a typed "yes" or explicit user approval before applying.
 
-### B8. Post-deploy health check
+### B9. Post-deploy health check
 Verify the deploy landed before declaring success:
 
 | Stack | Verification |
@@ -149,7 +188,7 @@ Verify the deploy landed before declaring success:
 
 If health check fails: follow the rollback steps below before declaring the release done.
 
-### B9. Post-release hygiene
+### B10. Post-release hygiene
 ```bash
 git checkout main && git pull origin main
 ```

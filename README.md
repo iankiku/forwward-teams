@@ -135,6 +135,19 @@ npx skills add → copies SKILL.md files → your agent loads them on demand
 - **Scaffold** — Basics that teams extend, not a rigid framework.
 - **Plugin-friendly** — Install, uninstall, update cleanly.
 
+## Feedback & Issues
+
+Something didn't work? A skill produced bad output for your stack? Missing a skill entirely?
+
+| Type | Where |
+|------|-------|
+| Skill produced wrong output | [Open a skill-quality issue](https://github.com/iankiku/forwward-teams/issues/new?template=skill-output.md) |
+| Install or CLI broke | [Open an install issue](https://github.com/iankiku/forwward-teams/issues/new?template=install-issue.md) |
+| Missing skill | [Request a new skill](https://github.com/iankiku/forwward-teams/issues/new?template=new-skill.md) |
+| Show what you built | [GitHub Discussions](https://github.com/iankiku/forwward-teams/discussions) |
+
+Skills are only as good as the feedback they get. The more specific the issue (which skill, which stack, what you asked, what came out), the faster it gets fixed.
+
 ## Contributing
 
 1. Fork and clone

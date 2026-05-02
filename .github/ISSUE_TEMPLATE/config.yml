@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Show what you built with forwward-teams
+    url: https://github.com/iankiku/forwward-teams/discussions
+    about: Share a workflow, a skill combination, or a win with the community

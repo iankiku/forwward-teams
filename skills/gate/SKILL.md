@@ -13,21 +13,25 @@ Run checks, read errors, fix them, repeat. Prove code WORKS by executing it.
 2. **NEVER declare PASS without command output.** "It should work" is not evidence.
 3. **If a check can't execute, report BLOCKED** — never fake PASS.
 
-## Step 0: Get Commands
+## Step 0: Detect the Stack and Get Commands
 
-Read `.claude/project.json` for build commands. If missing, init from the plugin CLI:
+Read `.claude/project.json` for build commands if it exists. If not, detect the stack and infer the right commands:
+
+| Stack marker | Lint | Typecheck | Build | Test |
+|---|---|---|---|---|
+| `package.json` | `npm run lint` | `npm run typecheck` / `tsc --noEmit` | `npm run build` | `npm test` |
+| `go.mod` | `golangci-lint run` | *(types checked at build)* | `go build ./...` | `go test ./...` |
+| `pyproject.toml` / `requirements.txt` | `ruff check .` / `flake8` | `mypy .` | *(no compile step)* | `pytest` |
+| `Gemfile` | `rubocop` | *(Sorbet if present)* | `bundle exec rake assets:precompile` | `bundle exec rspec` |
+| `pom.xml` | `mvn checkstyle:check` | *(compiled)* | `mvn package` | `mvn test` |
+| `Cargo.toml` | `cargo clippy` | *(compiled)* | `cargo build` | `cargo test` |
+
+Also check `Makefile` — many projects centralize all commands there (`make lint`, `make test`, `make build`).
+
+Or init from the plugin CLI if available:
 
 ```bash
 ${CLAUDE_PLUGIN_ROOT}/scripts/cli init
-```
-
-Or run checks directly via the plugin CLI:
-
-```bash
-${CLAUDE_PLUGIN_ROOT}/scripts/cli gate        # lint + typecheck + build + test
-${CLAUDE_PLUGIN_ROOT}/scripts/cli gatekeep -g  # same, with PASS/FAIL report
-${CLAUDE_PLUGIN_ROOT}/scripts/cli gatekeep -l  # lint only
-${CLAUDE_PLUGIN_ROOT}/scripts/cli gatekeep -t  # test only
 ```
 
 ## The Loop

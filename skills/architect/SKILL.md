@@ -48,7 +48,14 @@ Before designing, answer:
 
 ## Project Structure
 
-### TypeScript / Next.js
+**Detect the stack first.** Check `package.json`, `go.mod`, `Gemfile`, `pyproject.toml`, `pom.xml`, or `Cargo.toml` before recommending a structure. Apply the principles below to whatever stack the project uses.
+
+**Universal rules — apply to every stack:**
+- Feature code stays together. Don't scatter a feature across 8 directories.
+- Services contain business logic. Routes are thin — validate, call service, respond.
+- One service per domain, not one file per function.
+
+### Example: TypeScript / Next.js
 ```
 src/
 ├── app/                    # Next.js app router — pages and layouts
@@ -60,23 +67,21 @@ src/
 │   ├── auth/               # Auth config and helpers
 │   └── utils/              # Pure utility functions
 ├── services/               # Business logic — one file per domain
-│   ├── user.service.ts
-│   └── billing.service.ts
 ├── components/             # React components
 │   ├── ui/                 # Primitives (button, input, card)
 │   └── features/           # Feature-specific composites
 └── types/                  # Shared TypeScript types
 ```
 
-### Python / FastAPI
+### Example: Python / FastAPI
 ```
 src/
-├── api/                    # Route handlers
+├── api/
 │   ├── v1/                 # Versioned endpoints
 │   └── deps.py             # Shared dependencies (auth, db session)
 ├── core/                   # Config, security, constants
-├── models/                 # SQLAlchemy models
-├── schemas/                # Pydantic request/response schemas
+├── models/                 # ORM models
+├── schemas/                # Request/response schemas
 ├── services/               # Business logic — one file per domain
 ├── repositories/           # Data access layer
 └── tests/
@@ -84,10 +89,34 @@ src/
     └── integration/
 ```
 
-**Rules:**
-- Feature code stays together. Don't scatter a feature across 8 directories.
-- Services contain business logic. Routes are thin — validate, call service, respond.
-- One service per domain. `user.service.ts` not `getUserById.ts`, `updateUser.ts`, etc.
+### Example: Go
+```
+cmd/
+├── api/                    # Application entrypoint
+internal/
+├── handler/                # HTTP handlers (thin — validate + call service)
+├── service/                # Business logic
+├── repository/             # DB access layer
+├── model/                  # Domain types
+└── config/                 # Config loading
+pkg/                        # Shared, importable packages
+```
+
+### Example: Ruby on Rails
+```
+app/
+├── controllers/            # Thin — params, call service, render
+├── models/                 # ActiveRecord + domain logic
+├── services/               # Complex business logic extracted from models
+├── views/                  # Templates or JSON serializers
+└── jobs/                   # Background jobs (Sidekiq)
+config/
+db/
+├── migrate/                # Migrations
+└── schema.rb
+```
+
+For other stacks (Java/Spring, .NET, Rust, Elixir): apply the same principle — thin routes, services for business logic, repositories for data access, tests alongside the code they test.
 
 ## API Design
 

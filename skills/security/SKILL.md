@@ -7,16 +7,20 @@ description: (forwward) Implements authentication, authorization, encryption, HI
 
 Assume breach. Defense in depth. Least privilege everywhere.
 
+## Step 0: Detect the Stack
+
+Before advising on specific implementations, identify the project's stack (check `package.json`, `go.mod`, `Gemfile`, `pyproject.toml`, `pom.xml`, `Cargo.toml`). Security principles are universal — the libraries that implement them vary. Always recommend the idiomatic solution for the stack in use, not a JavaScript-specific one.
+
 ## Security Defaults
 
 Every project ships with:
 
-| Control | Implementation |
-|---------|---------------|
-| Auth | OAuth 2.0 / OIDC via Auth.js or Supabase Auth |
+| Control | What to implement |
+|---------|------------------|
+| Auth | OAuth 2.0 / OIDC via the standard library for your stack |
 | Sessions | HTTP-only, Secure, SameSite=Strict cookies |
-| Passwords | bcrypt/argon2, min 12 chars, no max limit |
-| API auth | Bearer tokens with expiry, refresh rotation |
+| Passwords | bcrypt or argon2, min 12 chars, no max limit |
+| API auth | Bearer tokens with expiry, refresh token rotation |
 | CORS | Explicit allowlist, never `*` in production |
 | HTTPS | Everywhere. No exceptions. HSTS headers. |
 | CSP | Content-Security-Policy header on all pages |
@@ -34,7 +38,7 @@ Every project ships with:
 | Security Misconfiguration | Defaults off, hardened configs, no debug in prod |
 | XSS | Output encoding, CSP headers, sanitize HTML |
 | Insecure Deserialization | Validate and type-check all serialized data |
-| Known Vulnerabilities | `npm audit`, `pip audit`, automated dependency updates |
+| Known Vulnerabilities | Dependency audit tool for your stack (`npm audit`, `pip audit`, `go mod tidy`, `bundle audit`, etc.) + automated updates |
 | Insufficient Logging | Log auth events, access denied, input validation failures |
 
 ## HIPAA Compliance (Health-Tech)
@@ -76,10 +80,10 @@ Every project ships with:
 When reviewing code for security:
 
 1. **Auth on every endpoint?** — Not just the route, but the data query too
-2. **Input validated at boundary?** — Zod/Pydantic before any processing
+2. **Input validated at boundary?** — Use the schema/validation library for your stack before any processing
 3. **Secrets in env vars?** — Never in code, git, or client bundles
-4. **SQL parameterized?** — No string concatenation, no template literals
+4. **Queries parameterized?** — No string concatenation, no interpolation into SQL or commands
 5. **Error messages safe?** — No stack traces, no internal paths to users
-6. **Deps up to date?** — `npm audit` / `pip audit` clean
+6. **Deps up to date?** — Run your stack's dependency audit tool
 7. **Logging sufficient?** — Auth events, permission failures, anomalies
 8. **Data minimized?** — Only collecting what's needed, only retaining as long as required

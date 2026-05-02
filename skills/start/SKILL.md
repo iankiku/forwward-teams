@@ -90,7 +90,11 @@ Based on mode, stage, and bottleneck, suggest 2-3 skills:
 | "Need to figure out positioning / pricing" | `/strategy` → `/pcp-engine` |
 | "Need to prepare for investor meetings" | `/ceo` → `/finance` → `/write` |
 | "Need sales outreach" | `/sales` → `/strategy` |
-| "Need to hire / grow the team" | `/ceo` → `/legal` |
+| "Need to hire / grow the team" | `/hire` → `/ceo` → `/legal` |
+| "Need to document processes / SOPs" | `/ops` |
+| "Need to summarize a meeting" | `/meeting` |
+| "Need to build a presentation or pitch deck" | `/deck` → `/write` |
+| "Need to write a status update" | `/standup` |
 
 ### Universal Recommendations
 

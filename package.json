@@ -22,6 +22,7 @@
     "node": ">=18"
   },
   "scripts": {
+    "postinstall": "node -e \"console.log('\\n  forwward-teams installed.\\n  Run: npx fwd skills install\\n  Or:  npx fwd skills install -g (global)\\n')\"",
     "pack": "npm pack --pack-destination dist",
     "clean": "rm -rf dist",
     "changeset": "changeset",

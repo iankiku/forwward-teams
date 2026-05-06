@@ -41,6 +41,9 @@ forwward.png
 *.jpg
 *.jpeg
 
+# Skills package manager — machine-specific, not part of the published package
+skills-lock.json
+
 # Repo management scripts — local only
 scripts/release
 

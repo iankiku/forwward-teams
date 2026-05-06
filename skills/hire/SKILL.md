@@ -1,6 +1,6 @@
 ---
 name: hire
-description: (forwward) Writes hiring artifacts — job descriptions, interview rubrics, scorecards, structured interview questions, and offer letter templates. Always invoke for: "write a JD", "job description for", "interview questions for", "hiring rubric", "scorecard for", "how do I interview a", "what should I look for in a", "offer letter", "hiring process for". Also invoke when the user describes a role they need to fill, even if they don't say "hire" or "JD". Works for any role — technical and non-technical, IC and leadership, full-time and contractor.
+description: (forwward) Writes hiring artifacts — job descriptions, interview rubrics, scorecards, structured questions, and offer letter templates. Use when the user says "write a JD", "interview questions for", "hiring rubric", "scorecard", "offer letter", "hiring process", or describes a role they need to fill (even without saying "hire"). Works for any role: technical or non-technical, IC or leadership, FT or contractor.
 ---
 
 # Hire

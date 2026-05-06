@@ -1,6 +1,6 @@
 ---
 name: deck
-description: (forwward) Structures and writes slide content for pitches, QBRs, board updates, strategy presentations, and internal all-hands. Produces a slide-by-slide outline with titles, talking points, and key data per slide — not design. Always invoke for: "help me build a deck", "slide structure for", "presentation on", "pitch deck", "QBR deck", "board update", "investor update", "all-hands deck", "what slides do I need for". Also invoke when the user is preparing for a high-stakes presentation and hasn't started on structure yet. Not for visual design or actual slide creation.
+description: (forwward) Structures slide content for pitches, QBRs, board updates, investor updates, strategy decks, and all-hands. Produces slide-by-slide outlines with titles, talking points, and key data per slide — content, not visual design. Use when the user says "help me build a deck", "pitch deck", "QBR", "board update", "what slides do I need", or is preparing a high-stakes presentation without structure yet.
 ---
 
 # Deck

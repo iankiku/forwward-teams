@@ -5,20 +5,28 @@
     "email": "hello@iankiku.com"
   },
   "metadata": {
-    "description": "Lean agent skills for technical founders — build, ship, grow"
+    "description": "Lean agent skills for building, shipping, strategy, and growth — no context bloat."
   },
   "plugins": [
     {
       "name": "forwward-teams",
       "source": "./",
-      "description": "(forwward) Lean agent skills — build, ship, strategy, growth. No context bloat.",
-      "version": "0.1.0",
+      "description": "(forwward) Lean agent skills for building, shipping, strategy, and growth — no context bloat.",
+      "version": "0.4.6",
       "keywords": [
+        "claude-code",
+        "agent-skills",
+        "ai-agents",
+        "gemini",
+        "cursor",
+        "codex",
+        "opencode",
         "startup",
         "founder",
         "engineering",
         "growth",
-        "strategy"
+        "strategy",
+        "skills"
       ]
     }
   ]

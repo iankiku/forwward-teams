@@ -1,6 +1,6 @@
 ---
 name: team-memory
-description: (forwward) Consolidates recent team work — commits, PRs, decisions, bug fixes, learnings — into a shared `team-memory/MEMORY.md` file. Like REM sleep for the team. Always invoke for: "team memory", "team-memory", "consolidate memory", "consolidate what we shipped", "remember what we did", "update team memory", "shared memory", "what did we ship this [week/sprint/month]". Also invoke proactively after a PR merges, after a release, at the end of a sprint, or when wrapping up a major piece of work. Reads git log, merged PRs, CHANGELOG, ADRs, and the current conversation, then appends structured entries covering Shipped, Decisions (with WHY), Fixes (with root cause), Learnings, and Open Threads. The memory file is git-tracked so the whole team — humans and future AI agents — share the same history. Not for one-off summaries (use /standup), personal notes, or PII.
+description: (forwward) Consolidates recent team work — commits, PRs, decisions, fixes, learnings — into a shared `team-memory/MEMORY.md`. Like REM sleep for the team. Use after a PR merges, after a release, at sprint-end, or when the user says "team memory", "what did we ship this week". Reads git log, PRs, CHANGELOG, ADRs, and the conversation; appends Shipped, Decisions (with WHY), Fixes (root cause), Learnings, Open Threads. Not for one-off summaries or PII.
 ---
 
 # Team Memory

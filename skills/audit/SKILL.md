@@ -1,6 +1,6 @@
 ---
 name: audit
-description: (forwward) Aggressively audits and cleans a codebase — removes slop, dead code, and AI-generated noise; resolves DRY and SOLID violations; prunes stale abstractions; and restructures toward the simplest correct implementation. One commit. No behavior changes. Always invoke for: "audit the codebase", "clean up the code", "remove tech debt", "deslop", "refactor this", "this codebase is a mess", "remove dead code", "tighten up the code", "code quality pass". Also invoked automatically by /gate as a pre-ship verification step. Works on the full codebase or a specific directory/file set. Detects the stack and applies idiomatic patterns throughout.
+description: (forwward) Aggressively audits and cleans a codebase — removes slop, dead code, and AI-generated noise; fixes DRY/SOLID violations; restructures toward the simplest correct implementation. One commit, no behavior changes. Use when the user says "audit the code", "clean up tech debt", "remove dead code", "deslop", "this codebase is a mess", or asks for a code-quality pass. Detects stack and applies idiomatic patterns. Works on full codebase or specific paths.
 ---
 
 # Audit — De-Slop, Prune, Restructure

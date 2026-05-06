@@ -11,6 +11,8 @@
   - Remove undocumented `"async": true` field from `hooks/hooks.json` (silently ignored by the harness).
   - Trim eight skill descriptions that exceeded the ~500-char auto-activation soft cap: `audit`, `deck`, `hire`, `meeting`, `ops`, `ship`, `standup`, `team-memory`. All now ≤ 462 chars. Removes per-turn skill-index bloat — matches the "no context bloat" tagline.
   - Strip cross-skill `/command` references from skill descriptions. Was misleading: `audit` referenced `/gate`, `standup` referenced `/team-memory`, `team-memory` referenced `/standup` — none of those slash commands exist in this plugin (skill-only, no `commands/` directory).
+  - `fwd skills install` now removes stale forwward skills during install. Renamed or removed skills no longer leave orphan directories behind. Identifies stale skills by the `(forwward)` description prefix, so other plugins' skills sharing the install directory are left untouched.
+  - Read CLI version from `package.json` instead of a hardcoded literal — every future bump propagates automatically.
 
 ## 0.4.5
 

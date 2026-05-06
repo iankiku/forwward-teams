@@ -19,7 +19,7 @@ import { select, input, confirm, checkbox } from "@inquirer/prompts";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PLUGIN_ROOT = join(__dirname, "..");
 const REPO = "iankiku/forwward-teams";
-const VERSION = "0.4.5";
+const VERSION = JSON.parse(readFileSync(join(PLUGIN_ROOT, "package.json"), "utf-8")).version;
 
 const BANNER = `
   forwward-teams v${VERSION}

@@ -94,6 +94,8 @@ npx @iankiku/forwward-teams
 npx skills update
 ```
 
+Updates are self-cleaning: forwward skills that were renamed or removed in the new release are pruned automatically. Other plugins' skills sharing the install directory are left alone (the cleanup keys off the `(forwward)` description prefix).
+
 ## Quick Start
 
 ```bash

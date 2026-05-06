@@ -1,5 +1,19 @@
 # @iankiku/forwward-teams
 
+## 0.5.0
+
+### Minor Changes
+
+- **Breaking change:** `/build` and `/ship` renamed to `/buildit` and `/shipit` to avoid name collisions with other skill plugins (e.g., `superpowers/ship`, `vercel-labs/skills` clones, generic `build` skills). Single-word names were colliding in installed skill directories — the resolver picks the first match by load order, which left the wrong skill firing depending on what else the user had installed.
+
+  Migration on update is automatic if you use the forwward-teams CLI: `npx -p @iankiku/forwward-teams fwd skills update` prunes the stale `build`/`ship` directories and installs `buildit`/`shipit` in their place. The cleanup pass added in 0.4.6 keys off the `(forwward)` description prefix, so other plugins' skills with the same name are left alone.
+
+  If you used `npx skills add iankiku/forwward-teams`, refresh with `-y` to pick up the renames.
+
+  All cross-references in `start`, `team-lead`, and `team-memory` skill descriptions were updated. The `(forwward)` prefix on every skill description still serves as the soft namespace marker — the rename addresses the harder failure mode where the resolver itself picks the wrong skill before activation logic ever runs.
+
+  README "Update" section reworked to document both install paths and the `skillPath` legacy-tracking issue users hit when upgrading from older `npx skills` CLI versions.
+
 ## 0.4.6
 
 ### Patch Changes

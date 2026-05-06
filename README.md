@@ -36,11 +36,11 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/team-lead` | Lead | Composes agent teams, coordinates parallel work |
 | `/cto` | CTO | Architecture decisions, build-vs-buy, PRDs, tech debt |
 | `/architect` | System Designer | DB selection, project structure, API design, caching, scaling — detects your stack |
-| `/build` | Engineer | Fullstack across any stack — detects TypeScript, Python, Go, Rails, Java, Rust and adapts |
+| `/buildit` | Engineer | Fullstack across any stack — detects TypeScript, Python, Go, Rails, Java, Rust and adapts |
 | `/gate` | QA | Self-healing verification: lint → types → build → tests — works with any build system |
 | `/audit` | Senior Engineer | Aggressive de-slop: dead code, DRY/SOLID violations, AI noise, frontend slop patterns — one commit, behavior-preserving |
 | `/review` | Reviewer | Paranoid code review — races, N+1s, trust boundaries, OWASP |
-| `/ship` | Shipping Engineer | Full pipeline: gate → squash → PR, or release (version bump → changelog → tag → dry-run → publish → health check). Hotfix fast-track. Covers Node, Go, Python, Ruby, Rust, Java, Terraform, Pulumi, Lambda, CDK |
+| `/shipit` | Shipping Engineer | Full pipeline: gate → squash → PR, or release (version bump → changelog → tag → dry-run → publish → health check). Hotfix fast-track. Covers Node, Go, Python, Ruby, Rust, Java, Terraform, Pulumi, Lambda, CDK |
 | `/design` | Designer | Anti-slop UI/UX — real design principles, no AI aesthetics |
 | `/devops` | SRE | CI/CD, Docker (Node/Python/Go/Rails), monitoring, alerting, incident response |
 | `/security` | InfoSec | OWASP, HIPAA, SOC 2, auth, encryption — stack-neutral |
@@ -90,11 +90,27 @@ npx @iankiku/forwward-teams
 
 ### Update
 
+If you installed via `npx skills`:
+
 ```bash
 npx skills update
 ```
 
-Updates are self-cleaning: forwward skills that were renamed or removed in the new release are pruned automatically. Other plugins' skills sharing the install directory are left alone (the cleanup keys off the `(forwward)` description prefix).
+If you see "cannot be updated automatically (installed before skillPath tracking)", refresh once:
+
+```bash
+npx skills add iankiku/forwward-teams -y
+```
+
+If you installed via the forwward-teams CLI directly:
+
+```bash
+npx -p @iankiku/forwward-teams fwd skills update
+```
+
+This path also auto-prunes any forwward skills that were renamed or removed in the new release. Other plugins' skills sharing the install directory are left alone — the cleanup keys off the `(forwward)` description prefix.
+
+> **0.5.0 rename:** `/build` and `/ship` were renamed to `/buildit` and `/shipit` to avoid name collisions with other plugins (e.g., `superpowers/ship`). On update, the old `build` and `ship` directories are pruned automatically; the new `buildit` and `shipit` are installed in their place. Update any scripts or aliases accordingly.
 
 ## Quick Start
 
@@ -107,7 +123,7 @@ Updates are self-cleaning: forwward skills that were renamed or removed in the n
 /team-lead Build user authentication with OAuth
 /ceo       Should we raise a seed round or bootstrap?
 /cto       Should we build or buy payments?
-/build     Add Stripe checkout to the pricing page
+/buildit   Add Stripe checkout to the pricing page
 /strategy  Define our ICP for enterprise sales
 /write     Thread about what we learned shipping v2
 /gtm       Design the referral loop for our waitlist
@@ -117,7 +133,7 @@ Updates are self-cleaning: forwward skills that were renamed or removed in the n
 /audit    # de-slop before you ship
 /gate     # verify everything passes
 /review   # paranoid code review
-/ship     # PR flow, release flow, or hotfix
+/shipit   # PR flow, release flow, or hotfix
 ```
 
 ## How It Works

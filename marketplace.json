@@ -12,7 +12,7 @@
       "name": "forwward-teams",
       "source": "./",
       "description": "(forwward) Lean agent skills for building, shipping, strategy, and growth — no context bloat.",
-      "version": "0.4.6",
+      "version": "0.5.0",
       "keywords": [
         "claude-code",
         "agent-skills",

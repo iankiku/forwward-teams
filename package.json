@@ -1,6 +1,6 @@
 {
   "name": "@iankiku/forwward-teams",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "description": "Lean agent skills for building, shipping, strategy, and growth — no context bloat.",
   "type": "module",
   "bin": {

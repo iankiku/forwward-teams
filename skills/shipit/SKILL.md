@@ -1,5 +1,5 @@
 ---
-name: ship
+name: shipit
 description: (forwward) Ships code — owns the pipeline from verified branch to deployed and healthy. Stack-aware shipping engineer and on-call SRE: detects Node/Go/Python/Ruby/Rust/Java/Terraform/Pulumi/Lambda/CDK and runs the right gate, build, test, deploy. Three modes — PR, release (version bump, changelog, tag, health check), hotfix. Confirms before every irreversible step. Use for "ship this", "open a PR", "release", "deploy", "cut a release", "hotfix".
 ---
 

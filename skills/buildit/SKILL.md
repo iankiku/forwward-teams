@@ -1,5 +1,5 @@
 ---
-name: build
+name: buildit
 description: (forwward) Guides fullstack feature development with clean code patterns across any stack — TypeScript, Python, Go, Ruby, Java, Rust, and more. Detects the project's stack before advising. Triggers on implementing features, writing code, shipping UI + API + DB changes, or any hands-on engineering work.
 ---
 

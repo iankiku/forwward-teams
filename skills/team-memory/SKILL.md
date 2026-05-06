@@ -226,7 +226,7 @@ If you can't commit (dirty working tree, no auth), tell the user the file is upd
 
 - **`/standup`** — reads `team-memory/MEMORY.md` to find what shipped since the last update
 - **`/onboard`** and **`/start`** — point a new teammate at the memory file as the canonical "what's been built and why" doc
-- **`/architect`**, **`/build`**, **`/cto`** — grep the memory before suggesting an approach the team already tried and rejected
+- **`/architect`**, **`/buildit`**, **`/cto`** — grep the memory before suggesting an approach the team already tried and rejected
 - **`/review`** — reads recent Decisions to know what conventions are in force
 
 ## File location

@@ -1,7 +1,7 @@
 {
   "name": "forwward-teams",
   "description": "(forwward) Lean agent skills for building, shipping, strategy, and growth — no context bloat.",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "author": {
     "name": "iankiku",
     "email": "hello@iankiku.com"
@@ -27,7 +27,7 @@
   "skills": [
     "skills/architect",
     "skills/audit",
-    "skills/build",
+    "skills/buildit",
     "skills/ceo",
     "skills/cto",
     "skills/data",
@@ -47,7 +47,7 @@
     "skills/review",
     "skills/sales",
     "skills/security",
-    "skills/ship",
+    "skills/shipit",
     "skills/standup",
     "skills/start",
     "skills/strategy",

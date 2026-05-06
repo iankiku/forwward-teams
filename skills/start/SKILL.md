@@ -20,7 +20,7 @@ Introduce yourself and ask these questions **one at a time** — conversational,
 **Tone:** Casual, direct. Not corporate. Not overly enthusiastic. Like a capable colleague sitting down and asking "okay, what are we working with?"
 
 **Read the room:**
-- If they say "just help me build X" — skip discovery, go to `/build`
+- If they say "just help me build X" — skip discovery, go to `/buildit`
 - If they say "I need a landing page" — skip to `/pcp-engine`
 - If they're clearly non-technical, don't ask about stacks or architecture
 
@@ -72,10 +72,10 @@ Based on mode, stage, and bottleneck, suggest 2-3 skills:
 | Stage | Bottleneck | Start With |
 |-------|-----------|------------|
 | Idea | "Don't know what to build" | `/strategy` → `/ceo` |
-| Idea | "Know what, don't know how" | `/architect` → `/build` |
-| MVP | "Need to ship faster" | `/build` → `/gate` → `/ship` |
+| Idea | "Know what, don't know how" | `/architect` → `/buildit` |
+| MVP | "Need to ship faster" | `/buildit` → `/gate` → `/shipit` |
 | MVP | "Don't know if anyone wants this" | `/strategy` → `/sales` |
-| Launched | "Code is a mess" | `/architect` → `/review` → `/build` |
+| Launched | "Code is a mess" | `/architect` → `/review` → `/buildit` |
 | Scaling | "Infra is breaking" | `/devops` → `/architect` → `/data` |
 
 ### Operator Recommendations

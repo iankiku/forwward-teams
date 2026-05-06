@@ -33,10 +33,10 @@ Each role maps to a skill. Spawn the agent and tell it which skill to use.
 | Role | Skill | Owns |
 |------|-------|------|
 | **Architect** | `/architect` | System design, DB selection, API contracts, project structure |
-| **Backend** | `/build` | API routes, services, business logic, background jobs |
-| **Frontend** | `/build` + `/design` | Components, UI state, client-side logic, responsiveness |
+| **Backend** | `/buildit` | API routes, services, business logic, background jobs |
+| **Frontend** | `/buildit` + `/design` | Components, UI state, client-side logic, responsiveness |
 | **Database** | `/architect` | Schema design, migrations, query optimization, indexes |
-| **API** | `/build` + `/architect` | Endpoint design, versioning, auth, request/response contracts |
+| **API** | `/buildit` + `/architect` | Endpoint design, versioning, auth, request/response contracts |
 | **UI/UX** | `/design` | Layout, component patterns, accessibility, visual consistency |
 | **Reviewer** | `/review` | Cross-cutting quality gate — trust boundaries, N+1s, races |
 | **DevOps** | `/devops` | CI/CD, Docker, infra, monitoring, deployment |
@@ -60,8 +60,8 @@ Each role maps to a skill. Spawn the agent and tell it which skill to use.
 | Name | Model | Role | Skill |
 |------|-------|------|-------|
 | architect | sonnet | API contracts, shared types, system design | `/architect` |
-| backend | haiku | Routes, services, DB | `/build` |
-| frontend | haiku | Components, UI (blocked by backend API contract) | `/build` + `/design` |
+| backend | haiku | Routes, services, DB | `/buildit` |
+| frontend | haiku | Components, UI (blocked by backend API contract) | `/buildit` + `/design` |
 | reviewer | sonnet | Quality gate after both ship | `/review` |
 
 ### API-Only / Backend Sprint (2 agents)
@@ -69,7 +69,7 @@ Each role maps to a skill. Spawn the agent and tell it which skill to use.
 
 | Name | Model | Role | Skill |
 |------|-------|------|-------|
-| backend | sonnet | Design + implement | `/architect` + `/build` |
+| backend | sonnet | Design + implement | `/architect` + `/buildit` |
 | reviewer | haiku | Review after done | `/review` |
 
 ### UI / Design Sprint (2 agents)
@@ -78,7 +78,7 @@ Each role maps to a skill. Spawn the agent and tell it which skill to use.
 | Name | Model | Role | Skill |
 |------|-------|------|-------|
 | designer | sonnet | Layout, patterns, component spec | `/design` |
-| frontend | haiku | Implement (blocked by designer) | `/build` |
+| frontend | haiku | Implement (blocked by designer) | `/buildit` |
 
 ### Code Quality (2 agents)
 **Trigger**: Tech debt, security audit, pre-release review.
@@ -86,7 +86,7 @@ Each role maps to a skill. Spawn the agent and tell it which skill to use.
 | Name | Model | Role | Skill |
 |------|-------|------|-------|
 | reviewer | sonnet | Correctness, security, patterns | `/review` + `/security` |
-| debt | haiku | Duplicates, dead code, over-engineering | `/build` |
+| debt | haiku | Duplicates, dead code, over-engineering | `/buildit` |
 
 ### Bug Hunt (2 agents)
 **Trigger**: Bug fixes, debugging, production incidents.
@@ -94,7 +94,7 @@ Each role maps to a skill. Spawn the agent and tell it which skill to use.
 | Name | Model | Role | Skill |
 |------|-------|------|-------|
 | investigator | sonnet | Root cause, reproduction | `/review` |
-| fixer | haiku | Implement fix (blocked by investigator) | `/build` |
+| fixer | haiku | Implement fix (blocked by investigator) | `/buildit` |
 
 ### Strategic Sprint (2-3 agents)
 **Trigger**: Market research, fundraising, competitive analysis, OKR planning.
@@ -113,14 +113,14 @@ Each role maps to a skill. Spawn the agent and tell it which skill to use.
 4. **Coordinate** — `TaskUpdate` to assign, `SendMessage` for blockers and handoffs
 5. **Gate** — Each agent runs `/gate` before declaring done
 6. **Memory** — After a significant milestone, run `/team-memory` to consolidate
-7. **Ship** — Run `/ship` to push and open PR
+7. **Ship** — Run `/shipit` to push and open PR
 
 ## How to instruct an agent to use a skill
 
 When spawning, include the skill in the agent's prompt:
 
 ```
-You are the backend engineer on this team. Use /build to implement the payments API.
+You are the backend engineer on this team. Use /buildit to implement the payments API.
 Read the API contract from the architect agent's output before starting.
 Run /gate before declaring done.
 ```

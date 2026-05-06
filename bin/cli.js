@@ -5,11 +5,13 @@ import {
   existsSync,
   mkdirSync,
   readFileSync,
+  readdirSync,
   writeFileSync,
   copyFileSync,
   chmodSync,
   cpSync,
   realpathSync,
+  rmSync,
 } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname, isAbsolute, resolve, sep } from "node:path";
@@ -19,7 +21,7 @@ import { select, input, confirm, checkbox } from "@inquirer/prompts";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PLUGIN_ROOT = join(__dirname, "..");
 const REPO = "iankiku/forwward-teams";
-const VERSION = "0.4.5";
+const VERSION = JSON.parse(readFileSync(join(PLUGIN_ROOT, "package.json"), "utf-8")).version;
 
 const BANNER = `
   forwward-teams v${VERSION}
@@ -161,6 +163,33 @@ function destResolvesIntoSource(dest, src) {
   }
 }
 
+// Remove stale forwward skills at `dest` — directories whose SKILL.md
+// description starts with "(forwward)" but which are no longer in the
+// current source. Other plugins' skills (no "(forwward)" prefix) are left
+// alone. Returns the list of removed skill names.
+function cleanStaleForwwardSkills(dest, srcSkillsDir) {
+  if (!existsSync(dest)) return [];
+  const sourceNames = new Set(
+    readdirSync(srcSkillsDir, { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => d.name)
+  );
+  const removed = [];
+  for (const entry of readdirSync(dest, { withFileTypes: true })) {
+    if (!entry.isDirectory() || sourceNames.has(entry.name)) continue;
+    const skillMd = join(dest, entry.name, "SKILL.md");
+    if (!existsSync(skillMd)) continue;
+    try {
+      const m = readFileSync(skillMd, "utf-8").match(/^description:\s*(.+?)$/m);
+      if (m && m[1].trim().startsWith("(forwward)")) {
+        rmSync(join(dest, entry.name), { recursive: true, force: true });
+        removed.push(entry.name);
+      }
+    } catch {}
+  }
+  return removed;
+}
+
 async function chooseAndInstallSkills(projectRoot, scope) {
   const srcSkillsDir = join(PLUGIN_ROOT, "skills");
   if (!existsSync(srcSkillsDir)) {
@@ -207,8 +236,12 @@ async function chooseAndInstallSkills(projectRoot, scope) {
 
     try {
       mkdirSync(dest, { recursive: true });
+      const staleCleared = cleanStaleForwwardSkills(dest, srcSkillsDir);
       cpSync(srcSkillsDir, dest, { recursive: true, force: true });
       ok(`${platform.name}: ${dest}`);
+      if (staleCleared.length > 0) {
+        log(`removed ${staleCleared.length} stale forwward skill(s): ${staleCleared.join(", ")}`);
+      }
       installed.push({ platform: platform.value, dest });
     } catch (err) {
       fail(`${platform.name}: ${err.message}`);

@@ -1,5 +1,19 @@
 # @iankiku/forwward-teams
 
+## 0.4.6
+
+### Patch Changes
+
+- - Restore `.claude-plugin/plugin.json` (was missing on disk) with explicit 32-skill array, version mirroring `package.json`, and a 13-keyword set covering both AI-tool discovery (`claude-code`, `agent-skills`, `ai-agents`, `gemini`, `cursor`, `codex`, `opencode`) and founder discovery (`startup`, `founder`, `engineering`, `growth`, `strategy`, `skills`).
+  - Sync `marketplace.json` plugin entry — version, description, and keywords now match `plugin.json` and `package.json`.
+  - **Behavior change** in `hooks/task-gate.sh` — was silent advisory (always exit 0, output discarded). Now surfaces lint failures via `exit 2` so Claude can fix them in-loop. Missing-binary case (exit 127) carved out so machines without `eslint`/`ruff` don't get spurious failures.
+  - Strengthen `hooks/validate-command.sh` regex — now also blocks `git push -f`, `--force-with-lease`, `git clean -fd`, `rm -rf ~`, `rm -rf $HOME`, `rm -rf *`, `sudo rm -rf`, `TRUNCATE TABLE`, and `DROP DATABASE`. Honest comment added that this is defense-in-depth, not a security boundary.
+  - Remove undocumented `"async": true` field from `hooks/hooks.json` (silently ignored by the harness).
+  - Trim eight skill descriptions that exceeded the ~500-char auto-activation soft cap: `audit`, `deck`, `hire`, `meeting`, `ops`, `ship`, `standup`, `team-memory`. All now ≤ 462 chars. Removes per-turn skill-index bloat — matches the "no context bloat" tagline.
+  - Strip cross-skill `/command` references from skill descriptions. Was misleading: `audit` referenced `/gate`, `standup` referenced `/team-memory`, `team-memory` referenced `/standup` — none of those slash commands exist in this plugin (skill-only, no `commands/` directory).
+  - `fwd skills install` now removes stale forwward skills during install. Renamed or removed skills no longer leave orphan directories behind. Identifies stale skills by the `(forwward)` description prefix, so other plugins' skills sharing the install directory are left untouched.
+  - Read CLI version from `package.json` instead of a hardcoded literal — every future bump propagates automatically.
+
 ## 0.4.5
 
 ### Patch Changes
@@ -32,7 +46,7 @@
 ### Patch Changes
 
 - Add new `/standup` skill — writes status updates leaders actually read (outcome-first, options + lean for blockers).
-- Add new `/team-memory` skill — REM sleep for the team. Consolidates commits, PRs, decisions, and bug-fix root causes into a shared, git-tracked `team-memory/MEMORY.md` so humans and AI agents share the same history of what shipped and *why*.
+- Add new `/team-memory` skill — REM sleep for the team. Consolidates commits, PRs, decisions, and bug-fix root causes into a shared, git-tracked `team-memory/MEMORY.md` so humans and AI agents share the same history of what shipped and _why_.
 
 ## 0.4.1
 

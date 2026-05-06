@@ -1,6 +1,6 @@
 ---
 name: ops
-description: (forwward) Writes operational artifacts — SOPs (standard operating procedures), process documentation, runbooks, workflow guides, and handoff docs for non-technical and cross-functional teams. Always invoke for: "write an SOP", "document this process", "create a runbook", "process doc", "how do we handle", "write up the workflow for", "onboarding doc", "handoff doc", "escalation process", "what's the procedure for". Also invoke when the user describes a repeatable workflow and seems to want it written down. Works for any team — CS, ops, finance, HR, sales, support, and cross-functional processes.
+description: (forwward) Writes operational artifacts for non-technical and cross-functional teams — SOPs, process docs, runbooks, workflow guides, handoff and escalation docs. Use when the user says "write an SOP", "document this process", "create a runbook", "how do we handle", "onboarding doc", "escalation process", or describes a repeatable workflow they want written down. Works for CS, ops, finance, HR, sales, support.
 ---
 
 # Ops

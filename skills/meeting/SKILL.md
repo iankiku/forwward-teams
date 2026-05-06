@@ -1,6 +1,6 @@
 ---
 name: meeting
-description: (forwward) Turns meeting transcripts, rough notes, or voice memos into a clean summary with decisions, action items (owner + deadline), and open questions. Always invoke for: "summarize this meeting", "meeting notes", "clean up my notes", "what were the action items", "write up from this call", "debrief", "what did we decide". Also invoke when the user pastes a block of unstructured text that looks like a transcript or raw notes. Works for any meeting type — standups, 1:1s, client calls, all-hands, board meetings, retrospectives.
+description: (forwward) Turns transcripts, rough notes, or voice memos into a clean summary with decisions, action items (owner + deadline), and open questions. Use when the user pastes unstructured notes or asks "summarize this meeting", "meeting notes", "what were the action items", "write up from this call", "debrief", "what did we decide". Works for any meeting type — standups, 1:1s, client calls, all-hands, retrospectives.
 ---
 
 # Meeting

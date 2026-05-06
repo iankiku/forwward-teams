@@ -1,6 +1,6 @@
 ---
 name: ship
-description: (forwward) Ships code — owns the full pipeline from verified branch to deployed and healthy. Stack-aware shipping engineer and on-call SRE: detects Node/Go/Python/Ruby/Rust/Java/Terraform/Pulumi/Lambda/CDK and runs the right lint, build, test, and deploy commands. Three modes — PR (gate → squash → push), release (gate → version bump → changelog → merge → tag → dry-run → confirm → deploy → health check → team-memory), hotfix (fast-track gate → merge → monitor → regression test). Interrogates before every irreversible action. SRE gates: change freeze detection, deploy-window warnings, dependency checks, rollback reference, post-deploy health verification. Invoke for: "ship this", "open a PR", "release", "deploy", "push and merge", "cut a release", "hotfix".
+description: (forwward) Ships code — owns the pipeline from verified branch to deployed and healthy. Stack-aware shipping engineer and on-call SRE: detects Node/Go/Python/Ruby/Rust/Java/Terraform/Pulumi/Lambda/CDK and runs the right gate, build, test, deploy. Three modes — PR, release (version bump, changelog, tag, health check), hotfix. Confirms before every irreversible step. Use for "ship this", "open a PR", "release", "deploy", "cut a release", "hotfix".
 ---
 
 # Ship — Shipping Engineer

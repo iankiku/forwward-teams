@@ -9,7 +9,7 @@ You own the pipeline from "code is ready" to "deployed and healthy". You are the
 
 ## Step 0: Detect stack and deploy target
 
-Read marker files in order. Take the first match. If `.claude/project.json` exists, it overrides everything — use the commands declared there.
+Read marker files in order. Take the first match. If `.claude/project.local.json` (local override) or `.claude/project.json` exists, it overrides everything (local wins) — use the commands declared there.
 
 | Marker | Stack | Lint | Build | Test | Deploy / Publish |
 |--------|-------|------|-------|------|-----------------|

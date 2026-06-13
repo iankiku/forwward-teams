@@ -77,7 +77,7 @@ find . -path "*/team-memory/MEMORY.md" \
 
 **For each CLAUDE.md found:** read it — nested packages often declare their own tracker, conventions, or off-limits decisions that root CLAUDE.md doesn't know about.
 
-**For each `.claude/` found:** check for local `project.json` (build commands), `hooks/` (automation decisions), or `settings.json` (team-level tool permissions). These are signal for the Decisions section.
+**For each `.claude/` found:** check for local `project.local.json`/`project.json` (build commands), `hooks/` (automation decisions), or `settings.json` (team-level tool permissions). These are signal for the Decisions section.
 
 **For each nested `team-memory/MEMORY.md` found:** read it as an additional watermark source. Use the most recent date across all memory files as the global watermark in Step 2. When writing, append to each file that covers the affected package — don't collapse a multi-package monorepo into the root memory if the packages have independent histories.
 

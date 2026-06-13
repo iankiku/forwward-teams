@@ -9,7 +9,7 @@ Analyze a task, pick the right team shape, spawn agents with the right skills, c
 
 ## Step 0: Detect the Stack and Project Config
 
-Before spawning agents, check for `.claude/project.json` (build commands) and read `CLAUDE.md` / `AGENTS.md` for project conventions. Then detect the stack:
+Before spawning agents, check for `.claude/project.local.json` (local override) then `.claude/project.json` (build commands) and read `CLAUDE.md` / `AGENTS.md` for project conventions. Then detect the stack:
 
 ```bash
 ${CLAUDE_PLUGIN_ROOT}/scripts/cli init   # creates .claude/project.json if missing

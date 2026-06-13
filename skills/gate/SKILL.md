@@ -15,7 +15,7 @@ Run checks, read errors, fix them, repeat. Prove code WORKS by executing it.
 
 ## Step 0: Detect the Stack and Get Commands
 
-Read `.claude/project.json` for build commands if it exists. If not, detect the stack and infer the right commands:
+Read `.claude/project.local.json` (local, gitignored override) if present, else `.claude/project.json`, for build commands. If not, detect the stack and infer the right commands:
 
 | Stack marker | Lint | Typecheck | Build | Test |
 |---|---|---|---|---|

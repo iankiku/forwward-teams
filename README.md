@@ -44,6 +44,14 @@ Most agents drown in skills. Every skill you add inflates context, burns tokens,
 | `/design` | Designer | Anti-slop UI/UX — real design principles, no AI aesthetics |
 | `/devops` | SRE | CI/CD, Docker (Node/Python/Go/Rails), monitoring, alerting, incident response |
 | `/security` | InfoSec | OWASP, HIPAA, SOC 2, auth, encryption — stack-neutral |
+| `/harden` | Red Teamer | Adversarial hardening pass — security, end-to-end observability, bottlenecks, anti-over-engineering |
+| `/check` | Setup Auditor | Pre-flight — is this repo actually ready to run? `.env` contract + localhost/staging/prod wiring |
+| `/alert` | Observability Engineer | Wires app errors to Slack/Sentry — one reporting seam, dedupe, the secret/flag ordering traps |
+| `/promote` | Release Manager | Multi-environment release runbook — drift-check, dependency order, destructive-footgun table |
+| `/vet` | Release Auditor | Go/no-go promotion readiness — unsigned commits, real drift, green CI, migrations |
+| `/recover` | Incident Commander | Stop the bleeding first, then diagnose — rollback playbook + incident checklist |
+| `/prlist` | PR Board | Read-only open-PR table — who owns what, what's waiting on your review |
+| `/link` | Tracker Sync | Keeps every PR traced to an issue — detects Linear/Jira/GitHub Issues, creates what's missing |
 | `/data` | Analyst | SQL, metrics, dashboards, event tracking, cohort analysis |
 | `/technical-writer` | Tech Writer | Docs, runbooks, API references, READMEs — structured discovery before drafting |
 

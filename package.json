@@ -56,5 +56,11 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.30.0"
+  },
+  "overrides": {
+    "js-yaml": "^4.3.0",
+    "read-yaml-file": {
+      "js-yaml": "^3.15.0"
+    }
   }
 }
